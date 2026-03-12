@@ -1,18 +1,21 @@
 import { useRef, useState, useEffect } from 'react';
 import data from '@emoji-mart/data';
 import Picker from '@emoji-mart/react';
+import type { User } from '../../types/user';
 import { fileToBase64, toDataUri } from '../../utils/image';
 import Avatar from '../shared/Avatar';
 import MentionText from '../shared/MentionText';
+import MentionTextarea from '../shared/MentionTextarea';
 import { useLanguage } from '../../i18n/LanguageContext';
 
 interface CreatePostBoxProps {
   userAvatar: string | null;
   username: string;
+  following: User[];
   onSubmit: (payload: { title: string; content: string; media?: string }) => Promise<void>;
 }
 
-export default function CreatePostBox({ userAvatar, username, onSubmit }: CreatePostBoxProps) {
+export default function CreatePostBox({ userAvatar, username, following, onSubmit }: CreatePostBoxProps) {
   const { t } = useLanguage();
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -90,10 +93,11 @@ export default function CreatePostBox({ userAvatar, username, onSubmit }: Create
             placeholder={t('postTitle')}
             className="w-full text-sm font-medium text-[#0F172A] placeholder:text-[#94A3B8] border-b border-[#F1F5F9] pb-2 mb-2 outline-none bg-transparent"
           />
-          <textarea
-            ref={contentRef}
+          <MentionTextarea
             value={content}
-            onChange={(e) => setContent(e.target.value)}
+            onChange={setContent}
+            following={following}
+            inputRef={contentRef}
             placeholder={t('whatsOnYourMind')}
             className="w-full resize-none border-none outline-none text-sm placeholder:text-[#94A3B8] text-[#0F172A] min-h-[60px] bg-transparent"
           />

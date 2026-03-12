@@ -93,6 +93,13 @@ export const translations = {
     registrationFailed: 'Registration failed. Please try again.',
     failedReadImage: 'Failed to read the selected image.',
 
+    // Notifications
+    notifications: 'Notifications',
+    noNotifications: 'No notifications yet.',
+    notifFollow: 'started following you',
+    notifLike: 'liked your post',
+    notifComment: 'commented on your post',
+
     // RightSidebar
     whoToFollow: 'Who to follow',
     following: 'Following',
@@ -201,6 +208,13 @@ export const translations = {
     mustAgreeTerms: 'Você deve concordar com os Termos de Serviço e Política de Privacidade.',
     registrationFailed: 'Falha no registro. Tente novamente.',
     failedReadImage: 'Falha ao ler a imagem selecionada.',
+
+    // Notifications
+    notifications: 'Notificações',
+    noNotifications: 'Nenhuma notificação ainda.',
+    notifFollow: 'começou a te seguir',
+    notifLike: 'curtiu seu post',
+    notifComment: 'comentou no seu post',
 
     // RightSidebar
     whoToFollow: 'Quem seguir',

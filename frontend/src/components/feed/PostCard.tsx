@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import type { Post } from '../../types/post';
+import type { User } from '../../types/user';
 import { toDataUri } from '../../utils/image';
 import { useComments } from '../../hooks/useComments';
 import { useLanguage } from '../../i18n/LanguageContext';
 import Avatar from '../shared/Avatar';
 import MentionText from '../shared/MentionText';
+import MentionInput from '../shared/MentionInput';
 import TimeAgo from '../shared/TimeAgo';
 import Spinner from '../shared/Spinner';
 
@@ -13,12 +15,13 @@ interface PostCardProps {
   currentUserId: number;
   currentUserAvatar: string | null;
   currentUsername: string;
+  following: User[];
   onLike: (postId: number, isLiked: boolean) => void;
   onEdit: (post: Post) => void;
   onDelete: (postId: number) => void;
 }
 
-export default function PostCard({ post, currentUserId, currentUserAvatar, currentUsername, onLike, onEdit, onDelete }: PostCardProps) {
+export default function PostCard({ post, currentUserId, currentUserAvatar, currentUsername, following, onLike, onEdit, onDelete }: PostCardProps) {
   const { t } = useLanguage();
   const isOwner = post.author.id === currentUserId;
   const [showComments, setShowComments] = useState(false);
@@ -295,11 +298,11 @@ export default function PostCard({ post, currentUserId, currentUserAvatar, curre
           <div className="flex items-center gap-2.5">
             <Avatar base64={currentUserAvatar} username={currentUsername} size={28} />
             <div className="flex-1 flex items-center gap-2 bg-[#F8FAFC] rounded-full px-3 py-1.5 border border-[#E2E8F0]">
-              <input
-                type="text"
+              <MentionInput
                 value={commentText}
-                onChange={(e) => setCommentText(e.target.value)}
+                onChange={setCommentText}
                 onKeyDown={(e) => { if (e.key === 'Enter') handleSubmitComment(); }}
+                following={following}
                 placeholder={t('writeComment')}
                 className="flex-1 bg-transparent text-sm text-[#0F172A] placeholder:text-[#94A3B8] outline-none"
               />

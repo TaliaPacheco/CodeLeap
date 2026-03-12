@@ -3,6 +3,7 @@ from .user import MeView, UserProfileView, UserSuggestionsView, FollowingListVie
 from .post import PostListCreateView, PostDetailView, PostLikeView
 from .comment import PostCommentsView, CommentDetailView
 from .follow import FollowView
+from .notification import NotificationListView, NotificationReadAllView, NotificationUnreadCountView
 
 __all__ = [
     'RegisterView', 'LoginView', 'LogoutView',
@@ -10,4 +11,5 @@ __all__ = [
     'PostListCreateView', 'PostDetailView', 'PostLikeView',
     'PostCommentsView', 'CommentDetailView',
     'FollowView',
+    'NotificationListView', 'NotificationReadAllView', 'NotificationUnreadCountView',
 ]

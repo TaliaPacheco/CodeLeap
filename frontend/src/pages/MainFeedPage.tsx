@@ -3,6 +3,7 @@ import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../i18n/LanguageContext';
 import { usePosts } from '../hooks/usePosts';
 import { useSuggestions } from '../hooks/useSuggestions';
+import { useNotifications } from '../hooks/useNotifications';
 import { createPost, deletePost as deletePostApi } from '../api/posts';
 import type { Post } from '../types/post';
 import TopBar from '../components/layout/TopBar';
@@ -33,6 +34,7 @@ export default function MainFeedPage() {
   });
 
   const { suggestions, following, loading: suggestionsLoading, loadingFollowing, follow, unfollow } = useSuggestions();
+  const { notifications, unreadCount, loading: notifLoading, loadNotifications, markAllAsRead } = useNotifications();
 
   // Modal state
   const [editingPost, setEditingPost] = useState<Post | null>(null);
@@ -60,7 +62,15 @@ export default function MainFeedPage() {
 
   return (
     <div className="min-h-screen bg-[#F6F6F8]">
-      <TopBar onLogout={logout} onEditProfile={() => setShowEditProfile(true)} />
+      <TopBar
+        onLogout={logout}
+        onEditProfile={() => setShowEditProfile(true)}
+        notifications={notifications}
+        unreadCount={unreadCount}
+        onOpenNotifications={loadNotifications}
+        onMarkAllRead={markAllAsRead}
+        notificationsLoading={notifLoading}
+      />
 
       <div className="flex max-w-[1200px] mx-auto pt-[72px] px-4 gap-6">
         {/* Left Sidebar */}
@@ -80,6 +90,7 @@ export default function MainFeedPage() {
           <CreatePostBox
             userAvatar={user.profile_picture}
             username={user.username}
+            following={following}
             onSubmit={handleCreatePost}
           />
 
@@ -97,6 +108,7 @@ export default function MainFeedPage() {
             currentUserId={user.id}
             currentUserAvatar={user.profile_picture}
             currentUsername={user.username}
+            following={following}
             loading={loading}
             loadingMore={loadingMore}
             hasMore={hasMore}

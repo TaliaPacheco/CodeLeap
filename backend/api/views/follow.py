@@ -4,7 +4,7 @@ from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from api.models import Follow
+from api.models import Follow, Notification
 
 User = get_user_model()
 
@@ -17,6 +17,9 @@ class FollowView(APIView):
         _, created = Follow.objects.get_or_create(follower=request.user, following=target)
         if not created:
             return Response({'detail': 'Already following.'}, status=status.HTTP_400_BAD_REQUEST)
+        Notification.objects.create(
+            recipient=target, actor=request.user, notification_type='follow'
+        )
         return Response(status=status.HTTP_201_CREATED)
 
     def delete(self, request, username):

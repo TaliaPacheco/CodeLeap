@@ -3,6 +3,7 @@ from .user import UserSerializer, UserUpdateSerializer
 from .post import PostSerializer, PostCreateSerializer, PostUpdateSerializer
 from .comment import CommentSerializer
 from .follow import FollowSerializer
+from .notification import NotificationSerializer
 
 __all__ = [
     'RegisterSerializer', 'LoginSerializer',
@@ -10,4 +11,5 @@ __all__ = [
     'PostSerializer', 'PostCreateSerializer', 'PostUpdateSerializer',
     'CommentSerializer',
     'FollowSerializer',
+    'NotificationSerializer',
 ]

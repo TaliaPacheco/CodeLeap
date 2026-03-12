@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import type { Post } from '../../types/post';
+import type { User } from '../../types/user';
 import Spinner from '../shared/Spinner';
 import PostCard from './PostCard';
 import { useLanguage } from '../../i18n/LanguageContext';
@@ -9,6 +10,7 @@ interface PostListProps {
   currentUserId: number;
   currentUserAvatar: string | null;
   currentUsername: string;
+  following: User[];
   loading: boolean;
   loadingMore: boolean;
   hasMore: boolean;
@@ -23,6 +25,7 @@ export default function PostList({
   currentUserId,
   currentUserAvatar,
   currentUsername,
+  following,
   loading,
   loadingMore,
   hasMore,
@@ -81,6 +84,7 @@ export default function PostList({
           currentUserId={currentUserId}
           currentUserAvatar={currentUserAvatar}
           currentUsername={currentUsername}
+          following={following}
           onLike={onLike}
           onEdit={onEdit}
           onDelete={onDelete}
