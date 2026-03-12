@@ -1,0 +1,53 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+
+# Build output
+frontend/dist/
+frontend/.vite/
+
+# Python
+backend/__pycache__/
+backend/**/__pycache__/
+backend/**/*.pyc
+backend/venv/
+backend/.venv/
+backend/*.egg-info/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+frontend/.env
+frontend/.env.*
+backend/.env
+backend/.env.*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+*.log
+
+# Database
+backend/db.sqlite3
+
+# Media uploads
+backend/media/
+
+# Coverage
+.coverage
+htmlcov/
+frontend/coverage/
+
+# Misc
+*.bak
+*.tmp
