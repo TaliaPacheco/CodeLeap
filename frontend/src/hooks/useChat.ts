@@ -12,7 +12,7 @@ export function useConversations() {
     setLoading(true);
     try {
       const data = await chatApi.fetchConversations();
-      setConversations(data.results);
+      setConversations(data.results ?? []);
     } catch { /* ignore */ }
     setLoading(false);
   }, []);
@@ -54,7 +54,7 @@ export function useChat(conversationId: number | null) {
     setMessages([]);
     setLoading(true);
     chatApi.fetchMessages(conversationId, 1).then(data => {
-      setMessages(data.results.reverse()); // API retorna desc, invertemos para asc
+      setMessages((data.results ?? []).reverse()); // API retorna desc, invertemos para asc
       setHasMore(data.next !== null);
       setNextPage(2);
       setLoading(false);
