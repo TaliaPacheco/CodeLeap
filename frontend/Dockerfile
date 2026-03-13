@@ -1,4 +1,4 @@
-FROM node:20-slim AS build
+FROM node:20-slim
 
 WORKDIR /app
 
@@ -8,9 +8,6 @@ RUN npm ci
 COPY . .
 RUN npm run build
 
-FROM nginx:alpine
+RUN npm install -g serve
 
-COPY --from=build /app/dist /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/templates/default.conf.template
-
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["sh", "-c", "serve -s dist -l ${PORT:-3000}"]
