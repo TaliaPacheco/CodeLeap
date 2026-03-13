@@ -14,6 +14,7 @@ import PostList from '../components/feed/PostList';
 import EditPostModal from '../components/modals/EditPostModal';
 import DeleteConfirmModal from '../components/modals/DeleteConfirmModal';
 import EditProfileModal from '../components/modals/EditProfileModal';
+import ChatWidget from '../components/chat/ChatWidget';
 
 type View = 'feed' | 'my-posts' | 'liked';
 type Sort = 'recent' | 'trending';
@@ -61,7 +62,7 @@ export default function MainFeedPage() {
   if (!user) return null;
 
   return (
-    <div className="min-h-screen bg-[#F6F6F8]">
+    <div className="min-h-screen bg-[var(--bg-page)]">
       <TopBar
         onLogout={logout}
         onEditProfile={() => setShowEditProfile(true)}
@@ -95,7 +96,7 @@ export default function MainFeedPage() {
           />
 
           <div className="flex items-center justify-between">
-            <h2 className="font-semibold text-base text-[#0F172A]">
+            <h2 className="font-semibold text-base text-[var(--text-primary)]">
               {activeView === 'my-posts' ? t('myPosts') : activeView === 'liked' ? t('likedPosts') : t('recentPosts')}
             </h2>
             <button className="text-xs font-semibold text-[#7494EC] hover:underline">
@@ -152,6 +153,8 @@ export default function MainFeedPage() {
         isOpen={showEditProfile}
         onClose={() => setShowEditProfile(false)}
       />
+
+      <ChatWidget />
     </div>
   );
 }

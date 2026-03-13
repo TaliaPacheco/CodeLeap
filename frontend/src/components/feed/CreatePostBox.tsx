@@ -81,7 +81,7 @@ export default function CreatePostBox({ userAvatar, username, following, onSubmi
   }
 
   return (
-    <div className="bg-white rounded-[12px] border border-[rgba(116,148,236,0.1)] shadow-[0_1px_2px_rgba(0,0,0,0.05)] p-5">
+    <div className="bg-[var(--bg-card)] rounded-[12px] border border-[var(--border-accent)] shadow-[var(--shadow-card)] p-5">
       <div className="flex items-start gap-3">
         <Avatar base64={userAvatar} username={username} size={40} />
 
@@ -91,7 +91,7 @@ export default function CreatePostBox({ userAvatar, username, following, onSubmi
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder={t('postTitle')}
-            className="w-full text-sm font-medium text-[#0F172A] placeholder:text-[#94A3B8] border-b border-[#F1F5F9] pb-2 mb-2 outline-none bg-transparent"
+            className="w-full text-sm font-medium text-[var(--text-primary)] placeholder:text-[var(--text-placeholder)] border-b border-[var(--border-light)] pb-2 mb-2 outline-none bg-transparent"
           />
           <MentionTextarea
             value={content}
@@ -99,14 +99,14 @@ export default function CreatePostBox({ userAvatar, username, following, onSubmi
             following={following}
             inputRef={contentRef}
             placeholder={t('whatsOnYourMind')}
-            className="w-full resize-none border-none outline-none text-sm placeholder:text-[#94A3B8] text-[#0F172A] min-h-[60px] bg-transparent"
+            className="w-full resize-none border-none outline-none text-sm placeholder:text-[var(--text-placeholder)] text-[var(--text-primary)] min-h-[60px] bg-transparent"
           />
         </div>
       </div>
 
       {/* Media preview */}
       {media && (
-        <div className="relative mt-3 ml-[52px] rounded-[8px] overflow-hidden border border-[#E2E8F0]">
+        <div className="relative mt-3 ml-[52px] rounded-[8px] overflow-hidden border border-[var(--border)]">
           <img
             src={toDataUri(media)}
             alt="Preview"
@@ -128,14 +128,14 @@ export default function CreatePostBox({ userAvatar, username, following, onSubmi
       {/* Preview modal */}
       {showPreview && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40" onClick={() => setShowPreview(false)}>
-          <div className="bg-white rounded-[12px] shadow-xl w-full max-w-[560px] mx-4 max-h-[80vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+          <div className="bg-[var(--bg-card)] rounded-[12px] shadow-xl w-full max-w-[560px] mx-4 max-h-[80vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
             {/* Modal header */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-[#F1F5F9]">
-              <span className="font-semibold text-base text-[#0F172A]">{t('preview')}</span>
+            <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--border-light)]">
+              <span className="font-semibold text-base text-[var(--text-primary)]">{t('preview')}</span>
               <button
                 type="button"
                 onClick={() => setShowPreview(false)}
-                className="text-[#94A3B8] hover:text-[#0F172A] transition-colors cursor-pointer"
+                className="text-[var(--text-placeholder)] hover:text-[var(--text-primary)] transition-colors cursor-pointer"
               >
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
@@ -147,14 +147,14 @@ export default function CreatePostBox({ userAvatar, username, following, onSubmi
             <div className="p-6">
               <div className="flex items-center gap-3 mb-3">
                 <Avatar base64={userAvatar} username={username} size={40} />
-                <span className="font-semibold text-sm text-[#0F172A]">@{username}</span>
+                <span className="font-semibold text-sm text-[var(--text-primary)]">@{username}</span>
               </div>
 
               {title.trim() && (
-                <h3 className="font-semibold text-base text-[#0F172A] mb-2">{title}</h3>
+                <h3 className="font-semibold text-base text-[var(--text-primary)] mb-2">{title}</h3>
               )}
 
-              <MentionText text={content} className="text-sm text-[#475569] leading-relaxed" />
+              <MentionText text={content} className="text-sm text-[var(--text-secondary)] leading-relaxed" />
 
               {media && (
                 <div className="mt-3 rounded-[8px] overflow-hidden">
@@ -167,13 +167,13 @@ export default function CreatePostBox({ userAvatar, username, following, onSubmi
       )}
 
       {/* Bottom bar */}
-      <div className="flex items-center justify-between mt-3 pt-3 border-t border-[#F1F5F9]">
+      <div className="flex items-center justify-between mt-3 pt-3 border-t border-[var(--border-light)]">
         <div className="flex items-center gap-3">
           {/* Image attach */}
           <button
             type="button"
             onClick={() => fileInputRef.current?.click()}
-            className="text-[#94A3B8] hover:text-[#7494EC] transition-colors cursor-pointer"
+            className="text-[var(--text-placeholder)] hover:text-[#7494EC] transition-colors cursor-pointer"
             aria-label="Attach image"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -193,7 +193,7 @@ export default function CreatePostBox({ userAvatar, username, following, onSubmi
             <button
               type="button"
               onClick={() => setShowEmojiPicker(!showEmojiPicker)}
-              className="text-[#94A3B8] hover:text-[#7494EC] transition-colors cursor-pointer"
+              className="text-[var(--text-placeholder)] hover:text-[#7494EC] transition-colors cursor-pointer"
               aria-label="Add emoji"
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -207,16 +207,6 @@ export default function CreatePostBox({ userAvatar, username, following, onSubmi
             )}
           </div>
 
-          {/* Code placeholder */}
-          <button
-            type="button"
-            className="text-[#94A3B8] hover:text-[#7494EC] transition-colors cursor-pointer"
-            aria-label="Add code"
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="16 18 22 12 16 6" /><polyline points="8 6 2 12 8 18" />
-            </svg>
-          </button>
         </div>
 
         <div className="flex items-center gap-2">

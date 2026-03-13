@@ -62,8 +62,8 @@ export default function EditProfileModal({ isOpen, onClose }: EditProfileModalPr
     <Modal isOpen={isOpen} onClose={onClose}>
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h2 className="font-semibold text-lg text-[#0F172A]">{t('editProfile')}</h2>
-        <button onClick={onClose} className="cursor-pointer text-[#94A3B8] hover:text-[#0F172A] transition">
+        <h2 className="font-semibold text-lg text-[var(--text-primary)]">{t('editProfile')}</h2>
+        <button onClick={onClose} className="cursor-pointer text-[var(--text-placeholder)] hover:text-[var(--text-primary)] transition">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <line x1="18" y1="6" x2="6" y2="18" />
             <line x1="6" y1="6" x2="18" y2="18" />
@@ -90,7 +90,7 @@ export default function EditProfileModal({ isOpen, onClose }: EditProfileModalPr
             </svg>
           </button>
         </div>
-        <span className="text-xs text-[#94A3B8] mt-2">{t('recommended')}</span>
+        <span className="text-xs text-[var(--text-placeholder)] mt-2">{t('recommended')}</span>
         <input
           ref={fileInputRef}
           type="file"
@@ -110,26 +110,26 @@ export default function EditProfileModal({ isOpen, onClose }: EditProfileModalPr
       >
         {/* Username */}
         <div>
-          <label className="block text-sm font-semibold text-[#334155] mb-1.5">{t('username')}</label>
+          <label className="block text-sm font-semibold text-[var(--text-label)] mb-1.5">{t('username')}</label>
           <div className="relative">
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#94A3B8] text-sm select-none">@</span>
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--text-placeholder)] text-sm select-none">@</span>
             <input
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="w-full h-10 rounded-[8px] border border-[#E2E8F0] bg-[#F8FAFC] pl-9 pr-3 text-sm focus:border-[#7494EC] focus:ring-1 focus:ring-[#7494EC] outline-none transition"
+              className="w-full h-10 rounded-[8px] border border-[var(--border)] bg-[var(--bg-input)] pl-9 pr-3 text-sm focus:border-[#7494EC] focus:ring-1 focus:ring-[#7494EC] outline-none transition"
             />
           </div>
         </div>
 
         {/* Bio */}
         <div>
-          <label className="block text-sm font-semibold text-[#334155] mb-1.5">{t('bio')}</label>
+          <label className="block text-sm font-semibold text-[var(--text-label)] mb-1.5">{t('bio')}</label>
           <textarea
             value={bio}
             onChange={(e) => setBio(e.target.value)}
             maxLength={500}
-            className="w-full min-h-[100px] rounded-[8px] border border-[#E2E8F0] bg-[#F8FAFC] p-3 text-sm resize-none focus:border-[#7494EC] focus:ring-1 focus:ring-[#7494EC] outline-none transition"
+            className="w-full min-h-[100px] rounded-[8px] border border-[var(--border)] bg-[var(--bg-input)] p-3 text-sm resize-none focus:border-[#7494EC] focus:ring-1 focus:ring-[#7494EC] outline-none transition"
           />
         </div>
 

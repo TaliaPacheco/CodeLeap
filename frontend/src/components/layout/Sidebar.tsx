@@ -12,7 +12,6 @@ interface SidebarProps {
 
 export default function Sidebar({ activeView, onViewChange, sort, onSortChange }: SidebarProps) {
   const { t } = useLanguage();
-
   const navItems: { id: View; label: string; icon: React.ReactNode }[] = [
     {
       id: 'feed',
@@ -52,7 +51,7 @@ export default function Sidebar({ activeView, onViewChange, sort, onSortChange }
   return (
     <div className="sticky top-[72px] w-full">
       {/* Navigation */}
-      <p className="text-xs font-semibold text-[#64748B] uppercase tracking-wider mb-3">
+      <p className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">
         {t('navigation')}
       </p>
       <nav className="space-y-1">
@@ -66,7 +65,7 @@ export default function Sidebar({ activeView, onViewChange, sort, onSortChange }
               className={`flex items-center gap-3 w-full px-4 py-2.5 rounded-[8px] text-sm transition ${
                 isActive
                   ? 'bg-[#7494EC] text-white'
-                  : 'text-[#475569] hover:bg-[#F1F5F9]'
+                  : 'text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)]'
               }`}
             >
               {item.icon}
@@ -77,10 +76,10 @@ export default function Sidebar({ activeView, onViewChange, sort, onSortChange }
       </nav>
 
       {/* Divider */}
-      <div className="border-t border-[#E2E8F0] my-4" />
+      <div className="border-t border-[var(--border)] my-4" />
 
       {/* Sort By */}
-      <p className="text-xs font-semibold text-[#64748B] uppercase tracking-wider mb-3">
+      <p className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">
         {t('sortBy')}
       </p>
       <div className="space-y-1">
@@ -93,7 +92,7 @@ export default function Sidebar({ activeView, onViewChange, sort, onSortChange }
             >
               <span
                 className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${
-                  isSelected ? 'border-[#7494EC]' : 'border-[#E2E8F0]'
+                  isSelected ? 'border-[#7494EC]' : 'border-[var(--border)]'
                 }`}
               >
                 {isSelected && (
@@ -108,7 +107,7 @@ export default function Sidebar({ activeView, onViewChange, sort, onSortChange }
                 onChange={() => onSortChange(option.id)}
                 className="sr-only"
               />
-              <span className="text-sm text-[#0F172A]">{option.label}</span>
+              <span className="text-sm text-[var(--text-primary)]">{option.label}</span>
             </label>
           );
         })}

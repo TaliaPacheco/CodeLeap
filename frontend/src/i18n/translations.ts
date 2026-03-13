@@ -75,6 +75,27 @@ export const translations = {
     invalidCredentials: 'Invalid credentials. Please try again.',
     somethingWentWrong: 'Something went wrong. Please try again.',
 
+    // Forgot Password
+    forgotPasswordTitle: 'Reset your password',
+    forgotPasswordSubtitle: 'Enter your email and we\'ll send you a link to reset your password.',
+    sendResetLink: 'Send reset link',
+    sendingResetLink: 'Sending...',
+    resetLinkSent: 'If an account with that email exists, a reset link has been sent.',
+    backToLogin: 'Back to login',
+
+    // Reset Password
+    resetPasswordTitle: 'Set new password',
+    resetPasswordSubtitle: 'Enter your new password below.',
+    newPassword: 'New password',
+    newPasswordPlaceholder: 'Enter your new password',
+    confirmPassword: 'Confirm password',
+    confirmPasswordPlaceholder: 'Repeat your new password',
+    resetPassword: 'Reset password',
+    resettingPassword: 'Resetting...',
+    passwordsDoNotMatch: 'Passwords do not match.',
+    passwordResetSuccess: 'Password updated! Redirecting to login...',
+    invalidResetLink: 'Invalid or expired link. Please request a new one.',
+
     // Registration
     joinTheNetwork: 'Join the Network',
     registerSubtitle: 'Create your account to start connecting with developers',
@@ -99,6 +120,18 @@ export const translations = {
     notifFollow: 'started following you',
     notifLike: 'liked your post',
     notifComment: 'commented on your post',
+
+    // Chat
+    chat: 'Chat',
+    messages: 'Messages',
+    typeMessage: 'Type a message...',
+    noConversations: 'No conversations yet.',
+    noMessages: 'No messages yet. Say hi!',
+    newChat: 'New Chat',
+    searchUser: 'Search by username...',
+    selectConversation: 'Select a conversation to start chatting',
+    loadMore: 'Load more',
+    noResults: 'No results found.',
 
     // RightSidebar
     whoToFollow: 'Who to follow',
@@ -191,6 +224,27 @@ export const translations = {
     invalidCredentials: 'Credenciais inválidas. Tente novamente.',
     somethingWentWrong: 'Algo deu errado. Tente novamente.',
 
+    // Forgot Password
+    forgotPasswordTitle: 'Redefinir sua senha',
+    forgotPasswordSubtitle: 'Digite seu email e enviaremos um link para redefinir sua senha.',
+    sendResetLink: 'Enviar link',
+    sendingResetLink: 'Enviando...',
+    resetLinkSent: 'Se uma conta com esse email existir, um link de redefinição foi enviado.',
+    backToLogin: 'Voltar ao login',
+
+    // Reset Password
+    resetPasswordTitle: 'Definir nova senha',
+    resetPasswordSubtitle: 'Digite sua nova senha abaixo.',
+    newPassword: 'Nova senha',
+    newPasswordPlaceholder: 'Digite sua nova senha',
+    confirmPassword: 'Confirmar senha',
+    confirmPasswordPlaceholder: 'Repita sua nova senha',
+    resetPassword: 'Redefinir senha',
+    resettingPassword: 'Redefinindo...',
+    passwordsDoNotMatch: 'As senhas não coincidem.',
+    passwordResetSuccess: 'Senha atualizada! Redirecionando para o login...',
+    invalidResetLink: 'Link inválido ou expirado. Solicite um novo.',
+
     // Registration
     joinTheNetwork: 'Junte-se à Rede',
     registerSubtitle: 'Crie sua conta para começar a se conectar com desenvolvedores',
@@ -215,6 +269,18 @@ export const translations = {
     notifFollow: 'começou a te seguir',
     notifLike: 'curtiu seu post',
     notifComment: 'comentou no seu post',
+
+    // Chat
+    chat: 'Chat',
+    messages: 'Mensagens',
+    typeMessage: 'Digite uma mensagem...',
+    noConversations: 'Nenhuma conversa ainda.',
+    noMessages: 'Nenhuma mensagem ainda. Diga oi!',
+    newChat: 'Nova Conversa',
+    searchUser: 'Buscar por nome de usuário...',
+    selectConversation: 'Selecione uma conversa para começar',
+    loadMore: 'Carregar mais',
+    noResults: 'Nenhum resultado encontrado.',
 
     // RightSidebar
     whoToFollow: 'Quem seguir',

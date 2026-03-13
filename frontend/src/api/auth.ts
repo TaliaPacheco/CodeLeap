@@ -13,6 +13,14 @@ export async function login(payload: LoginPayload): Promise<AuthTokens> {
   return data;
 }
 
+export async function forgotPassword(email: string): Promise<void> {
+  await client.post('/auth/forgot-password/', { email });
+}
+
+export async function resetPassword(uid: string, token: string, password: string): Promise<void> {
+  await client.post('/auth/reset-password/', { uid, token, password });
+}
+
 export async function logout(): Promise<void> {
   const refresh = getRefreshToken();
   try {

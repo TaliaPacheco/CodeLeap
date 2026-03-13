@@ -75,20 +75,20 @@ export default function RegistrationPage() {
   }
 
   return (
-    <div className="relative flex items-center justify-center min-h-screen bg-[#F6F6F8] overflow-hidden">
+    <div className="relative flex items-center justify-center min-h-screen bg-[var(--bg-page)] overflow-hidden">
       {/* Language toggle */}
-      <div className="absolute top-4 right-6 z-20 flex items-center bg-white rounded-full p-0.5 text-xs font-semibold shadow-sm border border-[#E2E8F0]">
+      <div className="absolute top-4 right-6 z-20 flex items-center bg-[var(--bg-card)] rounded-full p-0.5 text-xs font-semibold shadow-sm border border-[var(--border)]">
         <button
           type="button"
           onClick={() => setLanguage('en')}
-          className={`px-2.5 py-1 rounded-full transition-colors ${language === 'en' ? 'bg-[#7494EC] text-white' : 'text-[#64748B] hover:text-[#475569]'}`}
+          className={`px-2.5 py-1 rounded-full transition-colors ${language === 'en' ? 'bg-[#7494EC] text-white' : 'text-[var(--text-muted)] hover:text-[var(--text-secondary)]'}`}
         >
           EN
         </button>
         <button
           type="button"
           onClick={() => setLanguage('pt')}
-          className={`px-2.5 py-1 rounded-full transition-colors ${language === 'pt' ? 'bg-[#7494EC] text-white' : 'text-[#64748B] hover:text-[#475569]'}`}
+          className={`px-2.5 py-1 rounded-full transition-colors ${language === 'pt' ? 'bg-[#7494EC] text-white' : 'text-[var(--text-muted)] hover:text-[var(--text-secondary)]'}`}
         >
           PT
         </button>
@@ -114,19 +114,19 @@ export default function RegistrationPage() {
           <polyline points="16 18 22 12 16 6" />
           <polyline points="8 6 2 12 8 18" />
         </svg>
-        <span className="font-bold text-lg text-[#0F172A]">CodeLeap Network</span>
+        <span className="font-bold text-lg text-[var(--text-primary)]">CodeLeap Network</span>
       </div>
 
       {/* Card */}
       <form
         onSubmit={handleSubmit}
-        className="relative z-10 max-w-[480px] w-full rounded-[12px] border border-[#E2E8F0] bg-white shadow-sm p-8"
+        className="relative z-10 max-w-[480px] w-full rounded-[12px] border border-[var(--border)] bg-[var(--bg-card)] shadow-sm p-8"
       >
         {/* Title */}
-        <h1 className="font-black text-3xl text-center text-[#0F172A] tracking-tight">
+        <h1 className="font-black text-3xl text-center text-[var(--text-primary)] tracking-tight">
           {t('joinTheNetwork')}
         </h1>
-        <p className="text-base text-[#64748B] text-center mt-2">
+        <p className="text-base text-[var(--text-muted)] text-center mt-2">
           {t('registerSubtitle')}
         </p>
 
@@ -220,7 +220,7 @@ export default function RegistrationPage() {
               autoComplete="username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="w-full h-12 pl-10 pr-4 bg-[#F8FAFC] border border-[#E2E8F0] rounded-[8px] text-[#0F172A] placeholder-[#94A3B8] outline-none focus:border-[#7494EC] transition-colors"
+              className="w-full h-12 pl-10 pr-4 bg-[var(--bg-input)] border border-[var(--border)] rounded-[8px] text-[var(--text-primary)] placeholder-[var(--text-placeholder)] outline-none focus:border-[#7494EC] transition-colors"
             />
           </div>
 
@@ -249,7 +249,7 @@ export default function RegistrationPage() {
               autoComplete="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full h-12 pl-10 pr-4 bg-[#F8FAFC] border border-[#E2E8F0] rounded-[8px] text-[#0F172A] placeholder-[#94A3B8] outline-none focus:border-[#7494EC] transition-colors"
+              className="w-full h-12 pl-10 pr-4 bg-[var(--bg-input)] border border-[var(--border)] rounded-[8px] text-[var(--text-primary)] placeholder-[var(--text-placeholder)] outline-none focus:border-[#7494EC] transition-colors"
             />
           </div>
 
@@ -278,12 +278,12 @@ export default function RegistrationPage() {
               autoComplete="new-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full h-12 pl-10 pr-10 bg-[#F8FAFC] border border-[#E2E8F0] rounded-[8px] text-[#0F172A] placeholder-[#94A3B8] outline-none focus:border-[#7494EC] transition-colors"
+              className="w-full h-12 pl-10 pr-10 bg-[var(--bg-input)] border border-[var(--border)] rounded-[8px] text-[var(--text-primary)] placeholder-[var(--text-placeholder)] outline-none focus:border-[#7494EC] transition-colors"
             />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-[#94A3B8] hover:text-[#64748B] transition-colors"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--text-placeholder)] hover:text-[var(--text-muted)] transition-colors"
             >
               {showPassword ? (
                 <svg
@@ -330,7 +330,7 @@ export default function RegistrationPage() {
             onChange={(e) => setAgreedTerms(e.target.checked)}
             className="mt-0.5 w-4 h-4 accent-[#7494EC] rounded cursor-pointer"
           />
-          <span className="text-sm text-[#475569] leading-snug">
+          <span className="text-sm text-[var(--text-secondary)] leading-snug">
             {t('termsText')}{' '}
             <span className="text-[#7494EC] cursor-pointer">{t('termsOfService')}</span> {t('and')}{' '}
             <span className="text-[#7494EC] cursor-pointer">{t('privacyPolicy')}</span>.
@@ -347,8 +347,8 @@ export default function RegistrationPage() {
         </button>
 
         {/* Divider */}
-        <div className="border-t border-[#F1F5F9] mt-8 pt-6 text-center">
-          <span className="text-sm text-[#64748B]">{t('alreadyHaveAccount')} </span>
+        <div className="border-t border-[var(--border-light)] mt-8 pt-6 text-center">
+          <span className="text-sm text-[var(--text-muted)]">{t('alreadyHaveAccount')} </span>
           <Link to="/login" className="text-sm font-bold text-[#7494EC] hover:underline">
             {t('loginHere')}
           </Link>

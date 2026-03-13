@@ -11,17 +11,25 @@ services:
     ports:
       - "5432:5432"
 
+  redis:
+    image: redis:7-alpine
+    container_name: codeleap-redis
+    ports:
+      - "6379:6379"
+
   backend:
     build: ./backend
     container_name: codeleap-backend
     depends_on:
       - db
+      - redis
     environment:
       POSTGRES_DB: codeleap
       POSTGRES_USER: codeleap
       POSTGRES_PASSWORD: 86707341-67a9-4bda-a360-082ca9b268c4
       POSTGRES_HOST: db
       POSTGRES_PORT: 5432
+      REDIS_URL: redis://redis:6379/0
       DJANGO_DEBUG: "True"
       DJANGO_ALLOWED_HOSTS: "localhost,127.0.0.1,backend,backend:8000"
     volumes:

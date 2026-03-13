@@ -64,8 +64,8 @@ export default function EditPostModal({ isOpen, onClose, post, onSave }: EditPos
     <Modal isOpen={isOpen} onClose={onClose}>
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h2 className="font-semibold text-lg text-[#0F172A]">{t('editPost')}</h2>
-        <button onClick={onClose} className="cursor-pointer text-[#94A3B8] hover:text-[#0F172A] transition">
+        <h2 className="font-semibold text-lg text-[var(--text-primary)]">{t('editPost')}</h2>
+        <button onClick={onClose} className="cursor-pointer text-[var(--text-placeholder)] hover:text-[var(--text-primary)] transition">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <line x1="18" y1="6" x2="6" y2="18" />
             <line x1="6" y1="6" x2="18" y2="18" />
@@ -83,38 +83,38 @@ export default function EditPostModal({ isOpen, onClose, post, onSave }: EditPos
       >
         {/* Title */}
         <div>
-          <label className="block text-sm font-semibold text-[#334155] mb-1.5">{t('title')}</label>
+          <label className="block text-sm font-semibold text-[var(--text-label)] mb-1.5">{t('title')}</label>
           <input
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="w-full h-10 rounded-[8px] border border-[#E2E8F0] bg-[#F8FAFC] px-3 text-sm focus:border-[#7494EC] focus:ring-1 focus:ring-[#7494EC] outline-none transition"
+            className="w-full h-10 rounded-[8px] border border-[var(--border)] bg-[var(--bg-input)] px-3 text-sm focus:border-[#7494EC] focus:ring-1 focus:ring-[#7494EC] outline-none transition"
           />
         </div>
 
         {/* Content */}
         <div>
-          <label className="block text-sm font-semibold text-[#334155] mb-1.5">{t('content')}</label>
+          <label className="block text-sm font-semibold text-[var(--text-label)] mb-1.5">{t('content')}</label>
           <textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}
-            className="w-full min-h-[120px] rounded-[8px] border border-[#E2E8F0] bg-[#F8FAFC] p-3 text-sm resize-none focus:border-[#7494EC] focus:ring-1 focus:ring-[#7494EC] outline-none transition"
+            className="w-full min-h-[120px] rounded-[8px] border border-[var(--border)] bg-[var(--bg-input)] p-3 text-sm resize-none focus:border-[#7494EC] focus:ring-1 focus:ring-[#7494EC] outline-none transition"
           />
         </div>
 
         {/* Media Update */}
         <div>
-          <label className="block text-sm font-semibold text-[#334155] mb-1.5">{t('mediaUpdate')}</label>
+          <label className="block text-sm font-semibold text-[var(--text-label)] mb-1.5">{t('mediaUpdate')}</label>
 
           {currentMedia ? (
-            <div className="bg-[#F8FAFC] rounded-[8px] p-3 flex items-center gap-3">
+            <div className="bg-[var(--bg-input)] rounded-[8px] p-3 flex items-center gap-3">
               <img
                 src={toDataUri(currentMedia)}
                 alt="Post media"
                 className="w-12 h-12 rounded object-cover"
               />
               <div className="flex flex-col">
-                <span className="text-sm text-[#475569]">current_photo.jpg</span>
+                <span className="text-sm text-[var(--text-secondary)]">current_photo.jpg</span>
                 <button
                   type="button"
                   onClick={() => fileInputRef.current?.click()}

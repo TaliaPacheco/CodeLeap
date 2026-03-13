@@ -38,10 +38,10 @@ export default function DeleteConfirmModal({ isOpen, onClose, onConfirm }: Delet
         </div>
 
         {/* Title */}
-        <h2 className="font-semibold text-lg text-[#0F172A] mt-4">{t('areYouSure')}</h2>
+        <h2 className="font-semibold text-lg text-[var(--text-primary)] mt-4">{t('areYouSure')}</h2>
 
         {/* Description */}
-        <p className="text-sm text-[#64748B] mt-2">
+        <p className="text-sm text-[var(--text-muted)] mt-2">
           {t('deleteWarning')}
         </p>
 

@@ -33,26 +33,26 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#F6F6F8] flex flex-col items-center justify-center px-4 relative">
+    <div className="min-h-screen bg-[var(--bg-page)] flex flex-col items-center justify-center px-4 relative">
       {/* Language toggle */}
-      <div className="absolute top-4 right-6 flex items-center bg-white rounded-full p-0.5 text-xs font-semibold shadow-sm border border-[#E2E8F0]">
+      <div className="absolute top-4 right-6 flex items-center bg-[var(--bg-card)] rounded-full p-0.5 text-xs font-semibold shadow-sm border border-[var(--border)]">
         <button
           type="button"
           onClick={() => setLanguage('en')}
-          className={`px-2.5 py-1 rounded-full transition-colors ${language === 'en' ? 'bg-[#7494EC] text-white' : 'text-[#64748B] hover:text-[#475569]'}`}
+          className={`px-2.5 py-1 rounded-full transition-colors ${language === 'en' ? 'bg-[#7494EC] text-white' : 'text-[var(--text-muted)] hover:text-[var(--text-secondary)]'}`}
         >
           EN
         </button>
         <button
           type="button"
           onClick={() => setLanguage('pt')}
-          className={`px-2.5 py-1 rounded-full transition-colors ${language === 'pt' ? 'bg-[#7494EC] text-white' : 'text-[#64748B] hover:text-[#475569]'}`}
+          className={`px-2.5 py-1 rounded-full transition-colors ${language === 'pt' ? 'bg-[#7494EC] text-white' : 'text-[var(--text-muted)] hover:text-[var(--text-secondary)]'}`}
         >
           PT
         </button>
       </div>
 
-      <div className="max-w-[480px] w-full bg-white rounded-[12px] shadow-xl overflow-hidden">
+      <div className="max-w-[480px] w-full bg-[var(--bg-card)] rounded-[12px] shadow-xl overflow-hidden">
         {/* Header */}
         <div className="h-32 bg-[rgba(116,148,236,0.1)] flex flex-col items-center justify-center gap-3">
           <div className="w-10 h-10 bg-[#7494EC] rounded-[8px] flex items-center justify-center">
@@ -70,7 +70,7 @@ export default function LoginPage() {
               <polyline points="8 6 2 12 8 18" />
             </svg>
           </div>
-          <span className="font-bold text-xl text-[#0F172A] tracking-tight">
+          <span className="font-bold text-xl text-[var(--text-primary)] tracking-tight">
             CodeLeap Network
           </span>
         </div>
@@ -78,8 +78,8 @@ export default function LoginPage() {
         {/* Form */}
         <form onSubmit={handleSubmit} className="p-8 space-y-8">
           <div>
-            <h1 className="font-bold text-2xl text-[#0F172A]">{t('welcomeBack')}</h1>
-            <p className="text-sm text-[#64748B] mt-1">
+            <h1 className="font-bold text-2xl text-[var(--text-primary)]">{t('welcomeBack')}</h1>
+            <p className="text-sm text-[var(--text-muted)] mt-1">
               {t('loginSubtitle')}
             </p>
           </div>
@@ -89,7 +89,7 @@ export default function LoginPage() {
             <div className="space-y-2">
               <label
                 htmlFor="email"
-                className="block font-semibold text-sm text-[#334155]"
+                className="block font-semibold text-sm text-[var(--text-label)]"
               >
                 {t('emailOrUsername')}
               </label>
@@ -102,26 +102,18 @@ export default function LoginPage() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder={t('emailOrUsernamePlaceholder')}
                 required
-                className="w-full h-12 px-4 rounded-[8px] border border-[#E2E8F0] bg-white text-sm text-[#0F172A] placeholder:text-[#94A3B8] outline-none focus:border-[#7494EC] focus:ring-1 focus:ring-[#7494EC] transition-colors"
+                className="w-full h-12 px-4 rounded-[8px] border border-[var(--border)] bg-[var(--bg-card)] text-sm text-[var(--text-primary)] placeholder:text-[var(--text-placeholder)] outline-none focus:border-[#7494EC] focus:ring-1 focus:ring-[#7494EC] transition-colors"
               />
             </div>
 
             {/* Password */}
             <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <label
-                  htmlFor="password"
-                  className="block font-semibold text-sm text-[#334155]"
-                >
-                  {t('password')}
-                </label>
-                <button
-                  type="button"
-                  className="text-xs font-semibold text-[#7494EC] hover:underline"
-                >
-                  {t('forgotPassword')}
-                </button>
-              </div>
+              <label
+                htmlFor="password"
+                className="block font-semibold text-sm text-[var(--text-label)]"
+              >
+                {t('password')}
+              </label>
               <div className="relative">
                 <input
                   id="password"
@@ -132,7 +124,7 @@ export default function LoginPage() {
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder={t('passwordPlaceholder')}
                   required
-                  className="w-full h-12 px-4 pr-12 rounded-[8px] border border-[#E2E8F0] bg-white text-sm text-[#0F172A] placeholder:text-[#94A3B8] outline-none focus:border-[#7494EC] focus:ring-1 focus:ring-[#7494EC] transition-colors"
+                  className="w-full h-12 px-4 pr-12 rounded-[8px] border border-[var(--border)] bg-[var(--bg-card)] text-sm text-[var(--text-primary)] placeholder:text-[var(--text-placeholder)] outline-none focus:border-[#7494EC] focus:ring-1 focus:ring-[#7494EC] transition-colors"
                 />
                 <button
                   type="button"
@@ -189,7 +181,7 @@ export default function LoginPage() {
           </button>
 
           {/* Divider + Registration link */}
-          <div className="border-t border-[#F1F5F9] pt-6 text-center text-sm text-[#64748B]">
+          <div className="border-t border-[var(--border-light)] pt-6 text-center text-sm text-[var(--text-muted)]">
             {t('noAccount')}{' '}
             <Link
               to="/register"
@@ -202,7 +194,7 @@ export default function LoginPage() {
       </div>
 
       {/* Copyright */}
-      <p className="mt-6 text-xs text-[#94A3B8]">
+      <p className="mt-6 text-xs text-[var(--text-placeholder)]">
         {t('copyright')}
       </p>
     </div>
