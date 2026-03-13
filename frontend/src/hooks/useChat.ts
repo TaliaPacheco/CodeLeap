@@ -40,9 +40,10 @@ export function useChat(conversationId: number | null) {
   const [nextPage, setNextPage] = useState(2);
 
   const token = getAccessToken();
-  const wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+  const wsBase = import.meta.env.VITE_WS_URL
+    || `${window.location.protocol === 'https:' ? 'wss:' : 'ws:'}//${window.location.host}`;
   const wsUrl = conversationId && token
-    ? `${wsProtocol}//${window.location.host}/ws/chat/${conversationId}/?token=${token}`
+    ? `${wsBase}/ws/chat/${conversationId}/?token=${token}`
     : null;
 
   const { sendMessage: wsSend, lastMessage, isConnected } = useWebSocket(wsUrl);
