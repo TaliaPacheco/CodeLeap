@@ -3,7 +3,7 @@ import type { User } from '../types/user';
 import type { AuthTokens } from '../types/auth';
 import { fetchMe } from '../api/users';
 import * as authApi from '../api/auth';
-import { setLogoutCallback, getAccessToken, setTokens } from '../api/client';
+import { setLogoutCallback, getAccessToken, setTokens, clearTokens } from '../api/client';
 
 interface AuthContextValue {
   user: User | null;
@@ -26,6 +26,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     } catch {
       // ignore
     }
+    clearTokens();
     setUser(null);
   }, []);
 
@@ -48,7 +49,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (token) {
       fetchMe()
         .then(setUser)
-        .catch(() => setUser(null))
+        .catch(() => {
+          clearTokens();
+          setUser(null);
+        })
         .finally(() => setIsLoading(false));
     } else {
       setIsLoading(false);
