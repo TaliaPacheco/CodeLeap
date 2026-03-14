@@ -6,8 +6,5 @@ COPY package*.json ./
 RUN npm ci
 
 COPY . .
-RUN npm run build
 
-RUN npm install -g serve
-
-CMD ["sh", "-c", "serve -s dist -l tcp://0.0.0.0:${PORT:-3000}"]
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]

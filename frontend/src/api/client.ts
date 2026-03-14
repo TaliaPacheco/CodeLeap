@@ -27,10 +27,8 @@ export function clearTokens() {
   localStorage.removeItem(REFRESH_TOKEN_KEY);
 }
 
-const API_BASE = import.meta.env.VITE_API_URL || '/api';
-
 const client = axios.create({
-  baseURL: API_BASE,
+  baseURL: '/api',
 });
 
 client.interceptors.request.use((config) => {
@@ -91,7 +89,7 @@ client.interceptors.response.use(
     }
 
     try {
-      const { data } = await axios.post(`${API_BASE}/auth/token/refresh/`, {
+      const { data } = await axios.post('/api/auth/token/refresh/', {
         refresh: refreshToken,
       });
       setTokens(data.access, refreshToken);
