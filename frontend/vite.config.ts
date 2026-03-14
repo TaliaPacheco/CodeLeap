@@ -2,7 +2,8 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
-const apiTarget = process.env.API_TARGET || 'http://localhost:8000'
+const rawTarget = process.env.API_TARGET || 'http://localhost:8000'
+const apiTarget = rawTarget.startsWith('http') ? rawTarget : `http://${rawTarget}`
 console.log('[vite] API_TARGET =', apiTarget)
 console.log('[vite] PORT =', process.env.PORT)
 
