@@ -2,6 +2,10 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
+const apiTarget = process.env.API_TARGET || 'http://localhost:8000'
+console.log('[vite] API_TARGET =', apiTarget)
+console.log('[vite] PORT =', process.env.PORT)
+
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   server: {
@@ -10,11 +14,11 @@ export default defineConfig({
     allowedHosts: true,
     proxy: {
       '/api': {
-        target: process.env.API_TARGET || 'http://localhost:8000',
+        target: apiTarget,
         changeOrigin: true,
       },
       '/ws': {
-        target: process.env.API_TARGET || 'http://localhost:8000',
+        target: apiTarget,
         ws: true,
       },
     },
