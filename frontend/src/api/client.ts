@@ -28,7 +28,7 @@ export function clearTokens() {
 }
 
 const client = axios.create({
-  baseURL: '/api',
+  baseURL: import.meta.env.VITE_API_URL || '/api',
 });
 
 client.interceptors.request.use((config) => {
@@ -89,7 +89,7 @@ client.interceptors.response.use(
     }
 
     try {
-      const { data } = await axios.post('/api/auth/token/refresh/', {
+      const { data } = await axios.post(`${import.meta.env.VITE_API_URL || '/api'}/auth/token/refresh/`, {
         refresh: refreshToken,
       });
       setTokens(data.access, refreshToken);
