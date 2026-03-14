@@ -1,10 +1,12 @@
 # CodeLeap Network
 
-Rede social voltada para desenvolvedores, onde os usuários podem criar publicações, interagir com outros devs, seguir perfis e construir sua rede profissional.
+> **[Acesse a aplicação em produção](https://frontend-production-e8b9.up.railway.app/login)**
+
+Rede social voltada para desenvolvedores, onde os usuários podem criar publicações, interagir com outros devs, seguir perfis, trocar mensagens em tempo real e construir sua rede profissional.
 
 ## Visão Geral
 
-O projeto é composto por um **frontend em React** e um **backend em Django REST Framework**, ambos orquestrados via **Docker Compose**. A aplicação possui autenticação JWT, feed de posts com suporte a markdown, sistema de likes, comentários, follows e internacionalização (PT/EN).
+O projeto é composto por um **frontend em React** e um **backend em Django REST Framework**, ambos orquestrados via **Docker Compose**. A aplicação possui autenticação JWT, feed de posts com suporte a markdown, sistema de likes, comentários, follows, chat em tempo real via WebSocket, dark mode e internacionalização (PT/EN).
 
 ## Tecnologias
 
@@ -21,10 +23,13 @@ O projeto é composto por um **frontend em React** e um **backend em Django REST
 - **Django 5** + **Django REST Framework**
 - **JWT** (SimpleJWT) para autenticação
 - **PostgreSQL 16** como banco de dados
-- **Gunicorn** como servidor WSGI
+- **Django Channels** + **Redis** para WebSocket (chat em tempo real)
+- **Daphne** como servidor ASGI
+- **WhiteNoise** para servir arquivos estáticos em produção
 
 ### Infraestrutura
-- **Docker Compose** com 3 containers (banco, backend, frontend)
+- **Docker Compose** com 4 containers (PostgreSQL, Redis, backend, frontend)
+- **Railway** para deploy em produção
 
 ## Funcionalidades
 
@@ -42,7 +47,10 @@ O projeto é composto por um **frontend em React** e um **backend em Django REST
 - Ordenação por recentes ou em alta (trending)
 - Scroll infinito com IntersectionObserver
 - Edição de perfil (foto, username, bio)
-- Internacionalização completo (Português e Inglês)
+- **Chat em tempo real** via WebSocket (widget flutuante estilo LinkedIn)
+- **Notificações** de follows, likes e comentários
+- **Dark mode** com alternância claro/escuro
+- Internacionalização completa (Português e Inglês)
 - Seletor de emojis integrado na criação de posts
 - Design responsivo com layout de 3 colunas
 
@@ -55,12 +63,13 @@ CodeLeap/
 │   ├── src/
 │   │   ├── api/             # Clients HTTP (Axios)
 │   │   ├── components/      # Componentes reutilizáveis
+│   │   │   ├── chat/        # ChatWidget, ChatWindow, ChatBubble, ConversationList
 │   │   │   ├── feed/        # PostCard, PostList, CreatePostBox
 │   │   │   ├── layout/      # TopBar, Sidebar, RightSidebar
 │   │   │   ├── modals/      # EditPost, DeleteConfirm, EditProfile
 │   │   │   └── shared/      # Avatar, Spinner, TimeAgo, MentionText
-│   │   ├── context/         # AuthContext
-│   │   ├── hooks/           # usePosts, useComments, useSuggestions
+│   │   ├── context/         # AuthContext, ThemeContext
+│   │   ├── hooks/           # usePosts, useComments, useSuggestions, useChat, useWebSocket
 │   │   ├── i18n/            # Traduções e LanguageContext
 │   │   ├── pages/           # LoginPage, RegistrationPage, MainFeedPage
 │   │   ├── types/           # Interfaces TypeScript
@@ -68,10 +77,16 @@ CodeLeap/
 │   └── ...
 └── backend/                 # API Django
     ├── api/
-    │   ├── models/          # User, Post, Like, Comment, Follow
+    │   ├── models/          # User, Post, Like, Comment, Follow, Notification
     │   ├── views/           # Views da API REST
     │   ├── serializers/     # Serializers DRF
     │   └── urls/            # Rotas da API
+    ├── chat/
+    │   ├── models.py        # Conversation, Message
+    │   ├── consumers.py     # WebSocket consumer
+    │   ├── middleware.py     # JWT auth para WebSocket
+    │   ├── views.py         # REST endpoints do chat
+    │   └── routing.py       # Rotas WebSocket
     └── ...
 ```
 
@@ -84,7 +99,7 @@ CodeLeap/
 
 ```bash
 # Clonar o repositório
-git clone <url-do-repositorio>
+git clone https://github.com/TaliaPacheco/CodeLeap.git
 cd CodeLeap
 
 # Subir todos os containers
@@ -160,6 +175,22 @@ npm run dev
 | PATCH | `/api/posts/comments/:id/` | Editar comentário (apenas autor) |
 | DELETE | `/api/posts/comments/:id/` | Excluir comentário (apenas autor) |
 
+### Notificações
+| Método | Rota | Descrição |
+|--------|------|-----------|
+| GET | `/api/notifications/` | Listar notificações |
+| POST | `/api/notifications/read-all/` | Marcar todas como lidas |
+| GET | `/api/notifications/unread-count/` | Contagem de não lidas |
+
+### Chat
+| Método | Rota | Descrição |
+|--------|------|-----------|
+| GET | `/api/chat/conversations/` | Listar conversas |
+| POST | `/api/chat/conversations/` | Criar nova conversa |
+| GET | `/api/chat/conversations/:id/messages/` | Histórico de mensagens |
+| POST | `/api/chat/conversations/:id/read/` | Marcar mensagens como lidas |
+| WebSocket | `ws/chat/:id/?token=JWT` | Chat em tempo real |
+
 ## Telas
 
 ### Login
@@ -174,6 +205,9 @@ Layout de três colunas:
 - **Centro:** caixa de criação de post com preview de markdown, emoji picker e upload de imagem; lista de posts com scroll infinito
 - **Sidebar direita:** sugestões de quem seguir, lista de seguindo e card promocional
 
+### Chat
+Widget flutuante no canto inferior direito (estilo LinkedIn) com lista de conversas, janela de chat com mensagens em tempo real via WebSocket e modal para iniciar nova conversa.
+
 ## Decisões Técnicas
 
 - **JWT com refresh automático:** o Axios intercepta respostas 401 e renova o token automaticamente, sem o usuário perceber
@@ -182,3 +216,6 @@ Layout de três colunas:
 - **Likes otimistas:** a UI atualiza instantaneamente ao curtir/descurtir, sem esperar a resposta do servidor
 - **i18n sem dependência externa:** sistema de traduções leve usando React Context, sem bibliotecas como i18next
 - **Scroll infinito:** implementado com IntersectionObserver nativo, sem bibliotecas adicionais
+- **WebSocket com reconexão:** o chat usa WebSocket com backoff automático (1s, 2s, 4s... max 10s) para reconexão em caso de queda
+- **Dark mode com CSS Variables:** tema claro/escuro implementado via custom properties CSS, sem necessidade de classes Tailwind `dark:` em cada elemento
+- **Deploy via Railway:** frontend (Vite dev server) e backend (Daphne ASGI) rodando em containers Docker separados, com PostgreSQL e Redis como serviços gerenciados
