@@ -27,8 +27,15 @@ export function clearTokens() {
   localStorage.removeItem(REFRESH_TOKEN_KEY);
 }
 
+function resolveApiUrl() {
+  const env = import.meta.env.VITE_API_URL;
+  if (!env) return '/api';
+  if (env.startsWith('http')) return env;
+  return `https://${env}`;
+}
+
 const client = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || '/api',
+  baseURL: resolveApiUrl(),
 });
 
 client.interceptors.request.use((config) => {
@@ -89,7 +96,7 @@ client.interceptors.response.use(
     }
 
     try {
-      const { data } = await axios.post(`${import.meta.env.VITE_API_URL || '/api'}/auth/token/refresh/`, {
+      const { data } = await axios.post(`${resolveApiUrl()}/auth/token/refresh/`, {
         refresh: refreshToken,
       });
       setTokens(data.access, refreshToken);
