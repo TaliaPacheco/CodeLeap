@@ -30,8 +30,8 @@ export function clearTokens() {
 function resolveApiUrl() {
   const env = import.meta.env.VITE_API_URL;
   if (!env) return '/api';
-  if (env.startsWith('http')) return env;
-  return `https://${env}`;
+  const base = env.startsWith('http') ? env : `https://${env}`;
+  return base.endsWith('/api') ? base : `${base}/api`;
 }
 
 const client = axios.create({
