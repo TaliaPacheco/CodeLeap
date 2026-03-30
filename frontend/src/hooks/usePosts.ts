@@ -32,7 +32,8 @@ export function usePosts({ sort, author, liked }: UsePostsParams): UsePostsRetur
     try {
       if (append) setLoadingMore(true); else setLoading(true);
       const data = await postsApi.fetchPosts({ sort, author, liked: liked ? 'true' : undefined, page });
-      setPosts(prev => append ? [...prev, ...data.results] : data.results);
+      const results = Array.isArray(data.results) ? data.results : [];
+      setPosts(prev => append ? [...prev, ...results] : results);
       setNextPage(data.next ? page + 1 : null);
       setError(null);
     } catch {

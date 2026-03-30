@@ -31,9 +31,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const login = useCallback(async (tokens: AuthTokens) => {
-    setTokens(tokens.access, tokens.refresh);
-    const me = await fetchMe();
-    setUser(me);
+    setIsLoading(true);
+    try {
+      setTokens(tokens.access, tokens.refresh);
+      const me = await fetchMe();
+      setUser(me);
+    } finally {
+      setIsLoading(false);
+    }
   }, []);
 
   const updateUser = useCallback((updated: User) => {
@@ -59,8 +64,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
+  const validUser = user?.username ? user : null;
+
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated: !!user, isLoading, login, logout, updateUser }}>
+    <AuthContext.Provider value={{ user: validUser, isAuthenticated: !!validUser, isLoading, login, logout, updateUser }}>
       {children}
     </AuthContext.Provider>
   );

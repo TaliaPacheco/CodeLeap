@@ -10,12 +10,12 @@ export function useSuggestions() {
 
   useEffect(() => {
     usersApi.fetchSuggestions()
-      .then(setSuggestions)
+      .then(data => setSuggestions(Array.isArray(data) ? data : []))
       .catch(() => setSuggestions([]))
       .finally(() => setLoading(false));
 
     usersApi.fetchFollowing()
-      .then(setFollowing)
+      .then(data => setFollowing(Array.isArray(data) ? data : []))
       .catch(() => setFollowing([]))
       .finally(() => setLoadingFollowing(false));
   }, []);
