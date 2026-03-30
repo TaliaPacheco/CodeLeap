@@ -7,9 +7,9 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const variantClasses: Record<string, string> = {
-  primary: 'bg-[#7494EC] text-white hover:bg-[#6384DC] shadow',
-  danger: 'bg-[#EF4444] text-white hover:bg-[#DC2626]',
-  ghost: 'bg-white border border-[#E2E8F0] text-[#475569] hover:bg-[#F8FAFC]',
+  primary: 'bg-[var(--primary)] text-white hover:bg-[var(--primary-hover)]',
+  danger: 'bg-[var(--danger)] text-white hover:bg-[var(--danger-hover)]',
+  ghost: 'bg-[var(--bg-card)] border border-[var(--border)] text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)]',
 };
 
 export default function Button({
@@ -25,7 +25,7 @@ export default function Button({
   return (
     <button
       disabled={isDisabled}
-      className={`rounded-[8px] px-5 py-2.5 font-semibold text-sm transition inline-flex items-center justify-center gap-2 ${variantClasses[variant]} ${isDisabled ? 'opacity-50 cursor-not-allowed' : ''} ${className}`}
+      className={`rounded-[8px] px-5 py-2.5 font-medium text-sm transition-colors duration-150 inline-flex items-center justify-center gap-2 cursor-pointer ${variantClasses[variant]} ${isDisabled ? 'opacity-40 cursor-not-allowed' : ''} ${className}`}
       {...rest}
     >
       {loading && <Spinner size={16} className="border-2" />}

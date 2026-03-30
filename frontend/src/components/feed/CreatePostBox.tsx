@@ -81,7 +81,7 @@ export default function CreatePostBox({ userAvatar, username, following, onSubmi
   }
 
   return (
-    <div className="bg-[var(--bg-card)] rounded-[12px] border border-[var(--border-accent)] shadow-[var(--shadow-card)] p-5">
+    <div className="bg-[var(--bg-card)] rounded-[12px] border border-[var(--border)] p-5">
       <div className="flex items-start gap-3">
         <Avatar base64={userAvatar} username={username} size={40} />
 
@@ -128,7 +128,7 @@ export default function CreatePostBox({ userAvatar, username, following, onSubmi
       {/* Preview modal */}
       {showPreview && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40" onClick={() => setShowPreview(false)}>
-          <div className="bg-[var(--bg-card)] rounded-[12px] shadow-xl w-full max-w-[560px] mx-4 max-h-[80vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+          <div className="bg-[var(--bg-card)] rounded-[12px] border border-[var(--border)] w-full max-w-[560px] mx-4 max-h-[80vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
             {/* Modal header */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--border-light)]">
               <span className="font-semibold text-base text-[var(--text-primary)]">{t('preview')}</span>
@@ -173,7 +173,7 @@ export default function CreatePostBox({ userAvatar, username, following, onSubmi
           <button
             type="button"
             onClick={() => fileInputRef.current?.click()}
-            className="text-[var(--text-placeholder)] hover:text-[#7494EC] transition-colors cursor-pointer"
+            className="text-[var(--text-placeholder)] hover:text-[var(--primary)] transition-colors cursor-pointer"
             aria-label="Attach image"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -193,7 +193,7 @@ export default function CreatePostBox({ userAvatar, username, following, onSubmi
             <button
               type="button"
               onClick={() => setShowEmojiPicker(!showEmojiPicker)}
-              className="text-[var(--text-placeholder)] hover:text-[#7494EC] transition-colors cursor-pointer"
+              className="text-[var(--text-placeholder)] hover:text-[var(--primary)] transition-colors cursor-pointer"
               aria-label="Add emoji"
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -214,7 +214,7 @@ export default function CreatePostBox({ userAvatar, username, following, onSubmi
             type="button"
             onClick={() => setShowPreview(!showPreview)}
             disabled={!content.trim()}
-            className={`font-semibold text-sm px-4 py-2 rounded-[8px] cursor-pointer transition-colors border disabled:opacity-40 disabled:cursor-not-allowed ${showPreview ? 'bg-[#7494EC] text-white border-[#7494EC]' : 'text-[#7494EC] border-[#7494EC] hover:bg-[rgba(116,148,236,0.1)]'}`}
+            className={`font-medium text-sm px-4 py-2 rounded-[8px] cursor-pointer transition-colors border disabled:opacity-40 disabled:cursor-not-allowed ${showPreview ? 'bg-[var(--primary)] text-white border-[var(--primary)]' : 'text-[var(--primary)] border-[var(--primary)] hover:bg-[var(--primary-subtle)]'}`}
           >
             {t('preview')}
           </button>
@@ -222,7 +222,7 @@ export default function CreatePostBox({ userAvatar, username, following, onSubmi
             type="button"
             onClick={handleSubmit}
             disabled={!title.trim() || !content.trim() || submitting}
-            className="bg-[#7494EC] text-white font-semibold text-sm px-6 py-2 rounded-[8px] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed transition-opacity"
+            className="bg-[var(--primary)] text-white font-medium text-sm px-6 py-2 rounded-[8px] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed transition-opacity"
           >
             {submitting ? t('creating') : t('create')}
           </button>

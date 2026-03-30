@@ -39,23 +39,23 @@ export default function LoginPage() {
         <button
           type="button"
           onClick={() => setLanguage('en')}
-          className={`px-2.5 py-1 rounded-full transition-colors ${language === 'en' ? 'bg-[#7494EC] text-white' : 'text-[var(--text-muted)] hover:text-[var(--text-secondary)]'}`}
+          className={`px-2.5 py-1 rounded-full transition-colors ${language === 'en' ? 'bg-[var(--primary)] text-white' : 'text-[var(--text-muted)] hover:text-[var(--text-secondary)]'}`}
         >
           EN
         </button>
         <button
           type="button"
           onClick={() => setLanguage('pt')}
-          className={`px-2.5 py-1 rounded-full transition-colors ${language === 'pt' ? 'bg-[#7494EC] text-white' : 'text-[var(--text-muted)] hover:text-[var(--text-secondary)]'}`}
+          className={`px-2.5 py-1 rounded-full transition-colors ${language === 'pt' ? 'bg-[var(--primary)] text-white' : 'text-[var(--text-muted)] hover:text-[var(--text-secondary)]'}`}
         >
           PT
         </button>
       </div>
 
-      <div className="max-w-[480px] w-full bg-[var(--bg-card)] rounded-[12px] shadow-xl overflow-hidden">
+      <div className="max-w-[480px] w-full bg-[var(--bg-card)] rounded-[12px] border border-[var(--border)] overflow-hidden">
         {/* Header */}
-        <div className="h-32 bg-[rgba(116,148,236,0.1)] flex flex-col items-center justify-center gap-3">
-          <div className="w-10 h-10 bg-[#7494EC] rounded-[8px] flex items-center justify-center">
+        <div className="h-32 bg-[var(--primary-subtle)] flex flex-col items-center justify-center gap-3">
+          <div className="w-10 h-10 bg-[var(--primary)] rounded-[8px] flex items-center justify-center">
             <svg
               width="20"
               height="20"
@@ -102,7 +102,7 @@ export default function LoginPage() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder={t('emailOrUsernamePlaceholder')}
                 required
-                className="w-full h-12 px-4 rounded-[8px] border border-[var(--border)] bg-[var(--bg-card)] text-sm text-[var(--text-primary)] placeholder:text-[var(--text-placeholder)] outline-none focus:border-[#7494EC] focus:ring-1 focus:ring-[#7494EC] transition-colors"
+                className="w-full h-12 px-4 rounded-[8px] border border-[var(--border)] bg-[var(--bg-card)] text-sm text-[var(--text-primary)] placeholder:text-[var(--text-placeholder)] outline-none focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)] transition-colors"
               />
             </div>
 
@@ -124,7 +124,7 @@ export default function LoginPage() {
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder={t('passwordPlaceholder')}
                   required
-                  className="w-full h-12 px-4 pr-12 rounded-[8px] border border-[var(--border)] bg-[var(--bg-card)] text-sm text-[var(--text-primary)] placeholder:text-[var(--text-placeholder)] outline-none focus:border-[#7494EC] focus:ring-1 focus:ring-[#7494EC] transition-colors"
+                  className="w-full h-12 px-4 pr-12 rounded-[8px] border border-[var(--border)] bg-[var(--bg-card)] text-sm text-[var(--text-primary)] placeholder:text-[var(--text-placeholder)] outline-none focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)] transition-colors"
                 />
                 <button
                   type="button"
@@ -138,7 +138,7 @@ export default function LoginPage() {
                       height="20"
                       viewBox="0 0 24 24"
                       fill="none"
-                      stroke="#94A3B8"
+                      stroke="var(--text-placeholder)"
                       strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -152,7 +152,7 @@ export default function LoginPage() {
                       height="20"
                       viewBox="0 0 24 24"
                       fill="none"
-                      stroke="#94A3B8"
+                      stroke="var(--text-placeholder)"
                       strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -175,7 +175,7 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full h-12 bg-[#7494EC] text-white font-bold rounded-[8px] shadow-md hover:bg-[#6384DC] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+            className="w-full h-12 bg-[var(--primary)] text-white font-semibold rounded-[8px] hover:bg-[var(--primary-hover)] transition-colors disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
           >
             {loading ? t('entering') : t('enter')}
           </button>
@@ -185,7 +185,7 @@ export default function LoginPage() {
             {t('noAccount')}{' '}
             <Link
               to="/register"
-              className="font-bold text-[#7494EC] hover:underline"
+              className="font-bold text-[var(--primary)] hover:underline"
             >
               {t('registration')}
             </Link>

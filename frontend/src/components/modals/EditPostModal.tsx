@@ -88,7 +88,7 @@ export default function EditPostModal({ isOpen, onClose, post, onSave }: EditPos
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="w-full h-10 rounded-[8px] border border-[var(--border)] bg-[var(--bg-input)] px-3 text-sm focus:border-[#7494EC] focus:ring-1 focus:ring-[#7494EC] outline-none transition"
+            className="w-full h-10 rounded-[8px] border border-[var(--border)] bg-[var(--bg-input)] px-3 text-sm focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)] outline-none transition"
           />
         </div>
 
@@ -98,7 +98,7 @@ export default function EditPostModal({ isOpen, onClose, post, onSave }: EditPos
           <textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}
-            className="w-full min-h-[120px] rounded-[8px] border border-[var(--border)] bg-[var(--bg-input)] p-3 text-sm resize-none focus:border-[#7494EC] focus:ring-1 focus:ring-[#7494EC] outline-none transition"
+            className="w-full min-h-[120px] rounded-[8px] border border-[var(--border)] bg-[var(--bg-input)] p-3 text-sm resize-none focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)] outline-none transition"
           />
         </div>
 
@@ -118,7 +118,7 @@ export default function EditPostModal({ isOpen, onClose, post, onSave }: EditPos
                 <button
                   type="button"
                   onClick={() => fileInputRef.current?.click()}
-                  className="text-sm text-[#7494EC] cursor-pointer hover:underline text-left"
+                  className="text-sm text-[var(--primary)] cursor-pointer hover:underline text-left"
                 >
                   {t('changeMedia')}
                 </button>
@@ -128,7 +128,7 @@ export default function EditPostModal({ isOpen, onClose, post, onSave }: EditPos
             <button
               type="button"
               onClick={() => fileInputRef.current?.click()}
-              className="text-sm text-[#7494EC] cursor-pointer hover:underline"
+              className="text-sm text-[var(--primary)] cursor-pointer hover:underline"
             >
               {t('addMedia')}
             </button>

@@ -8,7 +8,7 @@ export function parseMentions(text: string): (string | React.ReactElement)[] {
         'span',
         {
           key: i,
-          className: 'text-[#7494EC] font-medium cursor-pointer hover:underline',
+          className: 'text-[var(--primary)] font-medium cursor-pointer hover:underline',
         },
         part
       );

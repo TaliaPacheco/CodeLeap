@@ -18,7 +18,7 @@ export default function RightSidebar({ suggestions, following, onFollow, onUnfol
     <div className="sticky top-[72px] w-full space-y-4">
       {/* Who to follow */}
       {(loading || suggestions.length > 0) && (
-        <div className="bg-[var(--bg-card)] rounded-[12px] border border-[var(--border-accent)] shadow-[var(--shadow-card)] p-4">
+        <div className="bg-[var(--bg-card)] rounded-[12px] border border-[var(--border)] p-4">
           <h3 className="font-semibold text-sm text-[var(--text-primary)]">{t('whoToFollow')}</h3>
 
           {loading ? (
@@ -45,7 +45,7 @@ export default function RightSidebar({ suggestions, following, onFollow, onUnfol
                   <button
                     type="button"
                     onClick={() => onFollow(user.username)}
-                    className="text-[#7494EC] font-semibold text-sm hover:underline shrink-0"
+                    className="text-[var(--primary)] font-medium text-sm hover:underline shrink-0 cursor-pointer"
                   >
                     {t('follow')}
                   </button>
@@ -58,7 +58,7 @@ export default function RightSidebar({ suggestions, following, onFollow, onUnfol
 
       {/* Following */}
       {(loadingFollowing || following.length > 0) && (
-        <div className="bg-[var(--bg-card)] rounded-[12px] border border-[var(--border-accent)] shadow-[var(--shadow-card)] p-4">
+        <div className="bg-[var(--bg-card)] rounded-[12px] border border-[var(--border)] p-4">
           <h3 className="font-semibold text-sm text-[var(--text-primary)]">{t('following')}</h3>
 
           {loadingFollowing ? (
@@ -85,7 +85,7 @@ export default function RightSidebar({ suggestions, following, onFollow, onUnfol
                   <button
                     type="button"
                     onClick={() => onUnfollow(user.username)}
-                    className="text-[var(--text-placeholder)] font-semibold text-sm hover:text-[#EF4444] hover:underline shrink-0 transition-colors"
+                    className="text-[var(--text-placeholder)] font-medium text-sm hover:text-[var(--danger)] hover:underline shrink-0 transition-colors duration-150 cursor-pointer"
                   >
                     {t('unfollow')}
                   </button>
@@ -97,12 +97,12 @@ export default function RightSidebar({ suggestions, following, onFollow, onUnfol
       )}
 
       {/* CodeLeap Premium */}
-      <div className="bg-[rgba(116,148,236,0.1)] rounded-[12px] p-4">
-        <h3 className="font-semibold text-sm text-[#7494EC]">{t('codeleapPremium')}</h3>
+      <div className="bg-[var(--primary-subtle)] rounded-[12px] p-4 border border-[var(--primary-muted)]">
+        <h3 className="font-semibold text-sm text-[var(--primary)]">{t('codeleapPremium')}</h3>
         <p className="text-xs text-[var(--text-secondary)] mt-1">{t('premiumDescription')}</p>
         <button
           type="button"
-          className="mt-3 w-full bg-[#7494EC] text-white text-sm font-semibold py-2.5 rounded-[8px] hover:bg-[#6384DC] transition"
+          className="mt-3 w-full bg-[var(--primary)] text-white text-sm font-medium py-2.5 rounded-[8px] hover:bg-[var(--primary-hover)] transition-colors duration-150 cursor-pointer"
         >
           {t('learnMore')}
         </button>

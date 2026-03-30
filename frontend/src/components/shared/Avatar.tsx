@@ -8,7 +8,7 @@ interface AvatarProps {
 }
 
 export default function Avatar({ base64, username, size = 40, className = '' }: AvatarProps) {
-  const initials = username.slice(0, 2).toUpperCase();
+  const initials = (username ?? '').slice(0, 2).toUpperCase();
 
   return (
     <div
@@ -22,10 +22,10 @@ export default function Avatar({ base64, username, size = 40, className = '' }: 
           className="w-full h-full object-cover"
         />
       ) : (
-        <div className="w-full h-full bg-[rgba(116,148,236,0.1)] flex items-center justify-center">
+        <div className="w-full h-full bg-[var(--primary-subtle)] flex items-center justify-center">
           <span
             style={{ fontSize: size * 0.38 }}
-            className="font-semibold text-[#7494EC] select-none"
+            className="font-medium text-[var(--primary)] select-none"
           >
             {initials}
           </span>

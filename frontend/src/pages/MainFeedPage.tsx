@@ -99,7 +99,7 @@ export default function MainFeedPage() {
             <h2 className="font-semibold text-base text-[var(--text-primary)]">
               {activeView === 'my-posts' ? t('myPosts') : activeView === 'liked' ? t('likedPosts') : t('recentPosts')}
             </h2>
-            <button className="text-xs font-semibold text-[#7494EC] hover:underline">
+            <button className="text-xs font-semibold text-[var(--primary)] hover:underline">
               {t('markAllAsRead')}
             </button>
           </div>

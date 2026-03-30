@@ -126,7 +126,7 @@ export default function MentionTextarea({ value, onChange, following, placeholde
       {mentionQuery !== null && filtered.length > 0 && (
         <div
           ref={dropdownRef}
-          className="absolute z-50 bg-white border border-[#E2E8F0] rounded-[8px] shadow-lg py-1 w-[220px] max-h-[200px] overflow-y-auto"
+          className="absolute z-50 bg-[var(--bg-card)] border border-[var(--border)] rounded-[8px] shadow-lg py-1 w-[220px] max-h-[200px] overflow-y-auto"
           style={{ top: '100%', left: 0 }}
         >
           {filtered.map((user, i) => (
@@ -134,7 +134,7 @@ export default function MentionTextarea({ value, onChange, following, placeholde
               key={user.id}
               type="button"
               onMouseDown={(e) => { e.preventDefault(); insertMention(user.username); }}
-              className={`w-full flex items-center gap-2.5 px-3 py-2 text-left transition-colors cursor-pointer ${i === mentionIndex ? 'bg-[rgba(116,148,236,0.1)]' : 'hover:bg-[#F8FAFC]'}`}
+              className={`w-full flex items-center gap-2.5 px-3 py-2 text-left transition-colors cursor-pointer ${i === mentionIndex ? 'bg-[var(--primary-subtle)]' : 'hover:bg-[var(--bg-input)]'}`}
             >
               <Avatar base64={user.profile_picture} username={user.username} size={24} />
               <div className="min-w-0">

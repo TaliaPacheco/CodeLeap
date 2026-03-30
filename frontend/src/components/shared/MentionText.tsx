@@ -17,7 +17,7 @@ function injectMentions(children: React.ReactNode): React.ReactNode {
         <>
           {parts.map((part, i) =>
             part.startsWith('@') ? (
-              <span key={i} className="text-[#7494EC] font-medium cursor-pointer hover:underline">
+              <span key={i} className="text-[var(--primary)] font-medium cursor-pointer hover:underline">
                 {part}
               </span>
             ) : (
@@ -56,7 +56,7 @@ const components: Components = {
   h6: withMentions('h6', 'text-xs font-semibold mb-1'),
   a({ href, children }) {
     return (
-      <a href={href} target="_blank" rel="noopener noreferrer" className="text-[#7494EC] hover:underline">
+      <a href={href} target="_blank" rel="noopener noreferrer" className="text-[var(--primary)] hover:underline">
         {children}
       </a>
     );
@@ -87,7 +87,7 @@ const components: Components = {
   },
   blockquote({ children }) {
     return (
-      <blockquote className="border-l-3 border-[#7494EC] pl-3 my-2 text-[#64748B] italic">
+      <blockquote className="border-l-3 border-[var(--primary)] pl-3 my-2 text-[var(--text-muted)] italic">
         {children}
       </blockquote>
     );

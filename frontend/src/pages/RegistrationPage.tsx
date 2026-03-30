@@ -81,22 +81,22 @@ export default function RegistrationPage() {
         <button
           type="button"
           onClick={() => setLanguage('en')}
-          className={`px-2.5 py-1 rounded-full transition-colors ${language === 'en' ? 'bg-[#7494EC] text-white' : 'text-[var(--text-muted)] hover:text-[var(--text-secondary)]'}`}
+          className={`px-2.5 py-1 rounded-full transition-colors ${language === 'en' ? 'bg-[var(--primary)] text-white' : 'text-[var(--text-muted)] hover:text-[var(--text-secondary)]'}`}
         >
           EN
         </button>
         <button
           type="button"
           onClick={() => setLanguage('pt')}
-          className={`px-2.5 py-1 rounded-full transition-colors ${language === 'pt' ? 'bg-[#7494EC] text-white' : 'text-[var(--text-muted)] hover:text-[var(--text-secondary)]'}`}
+          className={`px-2.5 py-1 rounded-full transition-colors ${language === 'pt' ? 'bg-[var(--primary)] text-white' : 'text-[var(--text-muted)] hover:text-[var(--text-secondary)]'}`}
         >
           PT
         </button>
       </div>
 
       {/* Decorative blurred circles */}
-      <div className="absolute top-24 left-16 w-64 h-64 bg-[rgba(116,148,236,0.2)] blur-[32px] rounded-full" />
-      <div className="absolute bottom-24 right-16 w-96 h-96 bg-[rgba(116,148,236,0.1)] blur-[32px] rounded-full" />
+      <div className="absolute top-24 left-16 w-64 h-64 bg-[var(--primary-muted)] blur-[32px] rounded-full" />
+      <div className="absolute bottom-24 right-16 w-96 h-96 bg-[var(--primary-subtle)] blur-[32px] rounded-full" />
 
       {/* Top-left header */}
       <div className="absolute top-4 left-40 flex items-center gap-2">
@@ -109,7 +109,7 @@ export default function RegistrationPage() {
           strokeWidth="2.5"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="text-[#7494EC]"
+          className="text-[var(--primary)]"
         >
           <polyline points="16 18 22 12 16 6" />
           <polyline points="8 6 2 12 8 18" />
@@ -120,7 +120,7 @@ export default function RegistrationPage() {
       {/* Card */}
       <form
         onSubmit={handleSubmit}
-        className="relative z-10 max-w-[480px] w-full rounded-[12px] border border-[var(--border)] bg-[var(--bg-card)] shadow-sm p-8"
+        className="relative z-10 max-w-[480px] w-full rounded-[12px] border border-[var(--border)] bg-[var(--bg-card)] p-8"
       >
         {/* Title */}
         <h1 className="font-black text-3xl text-center text-[var(--text-primary)] tracking-tight">
@@ -135,7 +135,7 @@ export default function RegistrationPage() {
           <button
             type="button"
             onClick={() => fileInputRef.current?.click()}
-            className="relative w-24 h-24 rounded-full border-2 border-dashed border-[rgba(116,148,236,0.4)] bg-[rgba(116,148,236,0.1)] flex items-center justify-center overflow-hidden cursor-pointer"
+            className="relative w-24 h-24 rounded-full border-2 border-dashed border-[var(--primary-muted)] bg-[var(--primary-subtle)] flex items-center justify-center overflow-hidden cursor-pointer"
           >
             {profilePicture ? (
               <img
@@ -149,7 +149,7 @@ export default function RegistrationPage() {
                 height="24"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="#7494EC"
+                stroke="var(--primary)"
                 strokeWidth="1.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -160,7 +160,7 @@ export default function RegistrationPage() {
             )}
 
             {/* Camera button */}
-            <span className="absolute bottom-0 right-0 bg-[#7494EC] rounded-full p-1.5 shadow-lg flex items-center justify-center">
+            <span className="absolute bottom-0 right-0 bg-[var(--primary)] rounded-full p-1.5 shadow-lg flex items-center justify-center">
               <svg
                 width="12"
                 height="12"
@@ -183,14 +183,14 @@ export default function RegistrationPage() {
             className="hidden"
           />
 
-          <span className="font-semibold text-sm text-[#7494EC] mt-2">
+          <span className="font-semibold text-sm text-[var(--primary)] mt-2">
             {t('uploadProfilePicture')}
           </span>
         </div>
 
         {/* Error message */}
         {error && (
-          <div className="text-sm text-[#EF4444] text-center mb-4">{error}</div>
+          <div className="text-sm text-[var(--danger)] text-center mb-4">{error}</div>
         )}
 
         {/* Input fields */}
@@ -203,7 +203,7 @@ export default function RegistrationPage() {
                 height="16"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="#94A3B8"
+                stroke="var(--text-placeholder)"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -220,7 +220,7 @@ export default function RegistrationPage() {
               autoComplete="username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="w-full h-12 pl-10 pr-4 bg-[var(--bg-input)] border border-[var(--border)] rounded-[8px] text-[var(--text-primary)] placeholder-[var(--text-placeholder)] outline-none focus:border-[#7494EC] transition-colors"
+              className="w-full h-12 pl-10 pr-4 bg-[var(--bg-input)] border border-[var(--border)] rounded-[8px] text-[var(--text-primary)] placeholder-[var(--text-placeholder)] outline-none focus:border-[var(--primary)] transition-colors"
             />
           </div>
 
@@ -232,7 +232,7 @@ export default function RegistrationPage() {
                 height="16"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="#94A3B8"
+                stroke="var(--text-placeholder)"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -249,7 +249,7 @@ export default function RegistrationPage() {
               autoComplete="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full h-12 pl-10 pr-4 bg-[var(--bg-input)] border border-[var(--border)] rounded-[8px] text-[var(--text-primary)] placeholder-[var(--text-placeholder)] outline-none focus:border-[#7494EC] transition-colors"
+              className="w-full h-12 pl-10 pr-4 bg-[var(--bg-input)] border border-[var(--border)] rounded-[8px] text-[var(--text-primary)] placeholder-[var(--text-placeholder)] outline-none focus:border-[var(--primary)] transition-colors"
             />
           </div>
 
@@ -261,7 +261,7 @@ export default function RegistrationPage() {
                 height="18"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="#94A3B8"
+                stroke="var(--text-placeholder)"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -278,7 +278,7 @@ export default function RegistrationPage() {
               autoComplete="new-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full h-12 pl-10 pr-10 bg-[var(--bg-input)] border border-[var(--border)] rounded-[8px] text-[var(--text-primary)] placeholder-[var(--text-placeholder)] outline-none focus:border-[#7494EC] transition-colors"
+              className="w-full h-12 pl-10 pr-10 bg-[var(--bg-input)] border border-[var(--border)] rounded-[8px] text-[var(--text-primary)] placeholder-[var(--text-placeholder)] outline-none focus:border-[var(--primary)] transition-colors"
             />
             <button
               type="button"
@@ -328,12 +328,12 @@ export default function RegistrationPage() {
             type="checkbox"
             checked={agreedTerms}
             onChange={(e) => setAgreedTerms(e.target.checked)}
-            className="mt-0.5 w-4 h-4 accent-[#7494EC] rounded cursor-pointer"
+            className="mt-0.5 w-4 h-4 accent-[var(--primary)] rounded cursor-pointer"
           />
           <span className="text-sm text-[var(--text-secondary)] leading-snug">
             {t('termsText')}{' '}
-            <span className="text-[#7494EC] cursor-pointer">{t('termsOfService')}</span> {t('and')}{' '}
-            <span className="text-[#7494EC] cursor-pointer">{t('privacyPolicy')}</span>.
+            <span className="text-[var(--primary)] cursor-pointer">{t('termsOfService')}</span> {t('and')}{' '}
+            <span className="text-[var(--primary)] cursor-pointer">{t('privacyPolicy')}</span>.
           </span>
         </label>
 
@@ -341,7 +341,7 @@ export default function RegistrationPage() {
         <button
           type="submit"
           disabled={loading}
-          className="mt-6 w-full py-3.5 bg-[#7494EC] text-white font-bold rounded-[8px] shadow hover:bg-[#5f7fd4] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+          className="mt-6 w-full py-3.5 bg-[var(--primary)] text-white font-semibold rounded-[8px] hover:bg-[var(--primary-hover)] transition-colors duration-150 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
         >
           {loading ? t('creatingAccount') : `${t('registerNow')} \u2192`}
         </button>
@@ -349,7 +349,7 @@ export default function RegistrationPage() {
         {/* Divider */}
         <div className="border-t border-[var(--border-light)] mt-8 pt-6 text-center">
           <span className="text-sm text-[var(--text-muted)]">{t('alreadyHaveAccount')} </span>
-          <Link to="/login" className="text-sm font-bold text-[#7494EC] hover:underline">
+          <Link to="/login" className="text-sm font-bold text-[var(--primary)] hover:underline">
             {t('loginHere')}
           </Link>
         </div>

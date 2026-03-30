@@ -28,11 +28,11 @@ export default function Modal({ isOpen, onClose, children, className = '' }: Mod
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40"
       onClick={onClose}
     >
       <div
-        className={`bg-white rounded-[12px] p-6 shadow-xl max-w-[480px] w-full max-h-[90vh] overflow-y-auto mx-4 ${className}`}
+        className={`bg-[var(--bg-card)] rounded-[12px] p-6 border border-[var(--border)] max-w-[480px] w-full max-h-[90vh] overflow-y-auto mx-4 ${className}`}
         onClick={(e) => e.stopPropagation()}
       >
         {children}

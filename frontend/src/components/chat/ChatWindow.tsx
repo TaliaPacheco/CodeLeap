@@ -70,7 +70,7 @@ export default function ChatWindow({ conversation, currentUserId, onNewMessage }
             className="w-9 h-9 rounded-full object-cover"
           />
         ) : (
-          <div className="w-9 h-9 rounded-full bg-[#7494EC] flex items-center justify-center text-white font-bold text-sm">
+          <div className="w-9 h-9 rounded-full bg-[var(--primary)] flex items-center justify-center text-white font-medium text-sm">
             {other.username[0].toUpperCase()}
           </div>
         )}
@@ -89,7 +89,7 @@ export default function ChatWindow({ conversation, currentUserId, onNewMessage }
           <button
             type="button"
             onClick={loadMore}
-            className="block mx-auto text-xs text-[#7494EC] hover:underline mb-2"
+            className="block mx-auto text-xs text-[var(--primary)] hover:underline mb-2"
           >
             {t('loadMore')}
           </button>
@@ -97,7 +97,7 @@ export default function ChatWindow({ conversation, currentUserId, onNewMessage }
 
         {loading ? (
           <div className="flex items-center justify-center py-8">
-            <div className="w-6 h-6 border-2 border-[#7494EC] border-t-transparent rounded-full animate-spin" />
+            <div className="w-6 h-6 border-2 border-[var(--primary)] border-t-transparent rounded-full animate-spin" />
           </div>
         ) : messages.length === 0 ? (
           <p className="text-sm text-[var(--text-placeholder)] text-center py-8">{t('noMessages')}</p>
@@ -116,12 +116,12 @@ export default function ChatWindow({ conversation, currentUserId, onNewMessage }
           value={text}
           onChange={e => setText(e.target.value)}
           placeholder={t('typeMessage')}
-          className="flex-1 h-10 px-4 rounded-full border border-[var(--border)] bg-[var(--bg-input)] text-sm text-[var(--text-primary)] placeholder:text-[var(--text-placeholder)] outline-none focus:border-[#7494EC] focus:ring-1 focus:ring-[#7494EC] transition-colors"
+          className="flex-1 h-10 px-4 rounded-full border border-[var(--border)] bg-[var(--bg-input)] text-sm text-[var(--text-primary)] placeholder:text-[var(--text-placeholder)] outline-none focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)] transition-colors"
         />
         <button
           type="submit"
           disabled={!text.trim()}
-          className="w-10 h-10 bg-[#7494EC] text-white rounded-full flex items-center justify-center hover:bg-[#6384DC] transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+          className="w-10 h-10 bg-[var(--primary)] text-white rounded-full flex items-center justify-center hover:bg-[var(--primary-hover)] transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
         >
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <line x1="22" y1="2" x2="11" y2="13" />

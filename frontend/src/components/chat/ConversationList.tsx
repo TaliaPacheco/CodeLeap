@@ -28,7 +28,7 @@ export default function ConversationList({ conversations, activeId, onSelect, on
       <div className="flex-1 overflow-y-auto">
         {loading ? (
           <div className="flex items-center justify-center py-8">
-            <div className="w-6 h-6 border-2 border-[#7494EC] border-t-transparent rounded-full animate-spin" />
+            <div className="w-6 h-6 border-2 border-[var(--primary)] border-t-transparent rounded-full animate-spin" />
           </div>
         ) : conversations.length === 0 ? (
           <p className="text-sm text-[var(--text-placeholder)] text-center py-8">{t('noConversations')}</p>
@@ -42,7 +42,7 @@ export default function ConversationList({ conversations, activeId, onSelect, on
                 type="button"
                 onClick={() => onSelect(conv)}
                 className={`w-full flex items-center gap-3 px-4 py-3 text-left transition-colors ${
-                  isActive ? 'bg-[rgba(116,148,236,0.1)]' : 'hover:bg-[var(--bg-input)]'
+                  isActive ? 'bg-[var(--primary-subtle)]' : 'hover:bg-[var(--bg-input)]'
                 }`}
               >
                 {other.profile_picture ? (
@@ -52,7 +52,7 @@ export default function ConversationList({ conversations, activeId, onSelect, on
                     className="w-10 h-10 rounded-full object-cover shrink-0"
                   />
                 ) : (
-                  <div className="w-10 h-10 rounded-full bg-[#7494EC] flex items-center justify-center text-white font-bold text-sm shrink-0">
+                  <div className="w-10 h-10 rounded-full bg-[var(--primary)] flex items-center justify-center text-white font-medium text-sm shrink-0">
                     {other.username[0].toUpperCase()}
                   </div>
                 )}
@@ -71,7 +71,7 @@ export default function ConversationList({ conversations, activeId, onSelect, on
                       {conv.last_message?.content ?? t('noMessages')}
                     </p>
                     {conv.unread_count > 0 && (
-                      <span className="ml-2 w-5 h-5 bg-[#7494EC] text-white text-[10px] font-bold rounded-full flex items-center justify-center shrink-0">
+                      <span className="ml-2 w-5 h-5 bg-[var(--primary)] text-white text-[10px] font-bold rounded-full flex items-center justify-center shrink-0">
                         {conv.unread_count}
                       </span>
                     )}

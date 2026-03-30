@@ -22,7 +22,7 @@ const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
           <input
             ref={ref}
             type={type}
-            className={`w-full h-12 rounded-[8px] border bg-[#F8FAFC] px-3 text-sm placeholder:text-[#94A3B8] focus:border-[#7494EC] focus:ring-1 focus:ring-[#7494EC] outline-none transition ${icon ? 'pl-11' : ''} ${error ? 'border-red-500' : 'border-[#E2E8F0]'}`}
+            className={`w-full h-12 rounded-[8px] border bg-[var(--bg-input)] px-3 text-sm placeholder:text-[var(--text-placeholder)] focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)] outline-none transition ${icon ? 'pl-11' : ''} ${error ? 'border-red-500' : 'border-[var(--border)]'}`}
             {...rest}
           />
         </div>

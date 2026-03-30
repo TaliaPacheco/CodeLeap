@@ -45,17 +45,17 @@ export default function TopBar({ onLogout, onEditProfile, notifications, unreadC
   }
 
   return (
-    <header className="fixed top-0 w-full bg-[var(--bg-card)] border-b border-[var(--border)] h-14 px-6 lg:px-10 flex items-center justify-between z-50">
+    <header className="fixed top-0 w-full bg-[var(--bg-card)]/95 backdrop-blur-sm border-b border-[var(--border)] h-14 px-6 lg:px-10 flex items-center justify-between z-50">
       {/* Left side: Logo */}
       <div className="flex items-center gap-2">
-        <div className="w-8 h-8 bg-[#7494EC] rounded-[6px] flex items-center justify-center">
+        <div className="w-8 h-8 bg-[var(--primary)] rounded-[8px] flex items-center justify-center">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <polyline points="16 18 22 12 16 6" />
             <polyline points="8 6 2 12 8 18" />
           </svg>
         </div>
         <span className="text-[var(--text-primary)] font-bold">CodeLeap</span>
-        <span className="text-[#7494EC] font-bold">Network</span>
+        <span className="text-[var(--primary)] font-bold">Network</span>
       </div>
 
       {/* Right side: Actions */}
@@ -65,14 +65,14 @@ export default function TopBar({ onLogout, onEditProfile, notifications, unreadC
           <button
             type="button"
             onClick={() => setLanguage('en')}
-            className={`px-2.5 py-1 rounded-full transition-colors ${language === 'en' ? 'bg-[var(--bg-card)] text-[#7494EC] shadow-sm' : 'text-[var(--text-muted)] hover:text-[var(--text-secondary)]'}`}
+            className={`px-2.5 py-1 rounded-full transition-colors ${language === 'en' ? 'bg-[var(--bg-card)] text-[var(--primary)]' : 'text-[var(--text-muted)] hover:text-[var(--text-secondary)]'}`}
           >
             EN
           </button>
           <button
             type="button"
             onClick={() => setLanguage('pt')}
-            className={`px-2.5 py-1 rounded-full transition-colors ${language === 'pt' ? 'bg-[var(--bg-card)] text-[#7494EC] shadow-sm' : 'text-[var(--text-muted)] hover:text-[var(--text-secondary)]'}`}
+            className={`px-2.5 py-1 rounded-full transition-colors ${language === 'pt' ? 'bg-[var(--bg-card)] text-[var(--primary)]' : 'text-[var(--text-muted)] hover:text-[var(--text-secondary)]'}`}
           >
             PT
           </button>
@@ -107,12 +107,12 @@ export default function TopBar({ onLogout, onEditProfile, notifications, unreadC
         {/* Bell notification icon */}
         <div className="relative" ref={dropdownRef}>
           <button type="button" onClick={handleBellClick} className="p-1 relative cursor-pointer">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#475569" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
               <path d="M13.73 21a2 2 0 0 1-3.46 0" />
             </svg>
             {unreadCount > 0 && (
-              <span className="absolute -top-1 -right-1 bg-[#EF4444] text-white text-[10px] font-bold rounded-full min-w-[16px] h-4 flex items-center justify-center px-1">
+              <span className="absolute -top-1 -right-1 bg-[var(--danger)] text-white text-[10px] font-bold rounded-full min-w-[16px] h-4 flex items-center justify-center px-1">
                 {unreadCount > 99 ? '99+' : unreadCount}
               </span>
             )}
@@ -120,7 +120,7 @@ export default function TopBar({ onLogout, onEditProfile, notifications, unreadC
 
           {/* Notification dropdown */}
           {showDropdown && (
-            <div className="absolute right-0 top-10 w-[340px] bg-[var(--bg-card)] border border-[var(--border)] rounded-[12px] shadow-lg overflow-hidden">
+            <div className="absolute right-0 top-10 w-[340px] bg-[var(--bg-card)] border border-[var(--border)] rounded-[12px] overflow-hidden">
               {/* Header */}
               <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--border-light)]">
                 <span className="font-semibold text-sm text-[var(--text-primary)]">{t('notifications')}</span>
@@ -128,7 +128,7 @@ export default function TopBar({ onLogout, onEditProfile, notifications, unreadC
                   <button
                     type="button"
                     onClick={onMarkAllRead}
-                    className="text-xs font-semibold text-[#7494EC] hover:underline cursor-pointer"
+                    className="text-xs font-semibold text-[var(--primary)] hover:underline cursor-pointer"
                   >
                     {t('markAllAsRead')}
                   </button>
@@ -139,7 +139,7 @@ export default function TopBar({ onLogout, onEditProfile, notifications, unreadC
               <div className="max-h-[360px] overflow-y-auto">
                 {notificationsLoading ? (
                   <div className="flex justify-center py-6">
-                    <div className="w-5 h-5 border-2 border-[#7494EC] border-t-transparent rounded-full animate-spin" />
+                    <div className="w-5 h-5 border-2 border-[var(--primary)] border-t-transparent rounded-full animate-spin" />
                   </div>
                 ) : notifications.length === 0 ? (
                   <p className="text-sm text-[var(--text-placeholder)] text-center py-6">{t('noNotifications')}</p>
@@ -147,7 +147,7 @@ export default function TopBar({ onLogout, onEditProfile, notifications, unreadC
                   notifications.map((n) => (
                     <div
                       key={n.id}
-                      className={`flex items-start gap-3 px-4 py-3 border-b border-[var(--bg-input)] last:border-b-0 ${!n.is_read ? 'bg-[rgba(116,148,236,0.05)]' : ''}`}
+                      className={`flex items-start gap-3 px-4 py-3 border-b border-[var(--bg-input)] last:border-b-0 ${!n.is_read ? 'bg-[var(--primary-subtle)]' : ''}`}
                     >
                       <Avatar base64={n.actor.profile_picture} username={n.actor.username} size={32} />
                       <div className="flex-1 min-w-0">
@@ -158,7 +158,7 @@ export default function TopBar({ onLogout, onEditProfile, notifications, unreadC
                         <TimeAgo date={n.created_at} className="text-xs text-[var(--text-placeholder)]" />
                       </div>
                       {!n.is_read && (
-                        <span className="w-2 h-2 rounded-full bg-[#7494EC] shrink-0 mt-1.5" />
+                        <span className="w-2 h-2 rounded-full bg-[var(--primary)] shrink-0 mt-1.5" />
                       )}
                     </div>
                   ))
@@ -172,7 +172,7 @@ export default function TopBar({ onLogout, onEditProfile, notifications, unreadC
         <button
           type="button"
           onClick={onEditProfile}
-          className="flex items-center gap-2 text-[var(--text-secondary)] hover:text-[#7494EC] font-semibold text-sm transition-colors"
+          className="flex items-center gap-2 text-[var(--text-secondary)] hover:text-[var(--primary)] font-semibold text-sm transition-colors"
         >
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
@@ -185,9 +185,9 @@ export default function TopBar({ onLogout, onEditProfile, notifications, unreadC
         <button
           type="button"
           onClick={onLogout}
-          className="flex items-center gap-2 text-[#7494EC] font-semibold text-sm"
+          className="flex items-center gap-2 text-[var(--primary)] font-semibold text-sm"
         >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7494EC" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
             <polyline points="16 17 21 12 16 7" />
             <line x1="21" y1="12" x2="9" y2="12" />

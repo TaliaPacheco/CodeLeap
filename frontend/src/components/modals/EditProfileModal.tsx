@@ -82,7 +82,7 @@ export default function EditProfileModal({ isOpen, onClose }: EditProfileModalPr
           <button
             type="button"
             onClick={() => fileInputRef.current?.click()}
-            className="absolute bottom-0 right-0 bg-[#7494EC] rounded-full p-1.5 shadow cursor-pointer hover:bg-[#6384DC] transition"
+            className="absolute bottom-0 right-0 bg-[var(--primary)] rounded-full p-1.5 cursor-pointer hover:bg-[var(--primary-hover)] transition"
           >
             <svg width="12" height="12" viewBox="0 0 24 24" fill="white" stroke="white" strokeWidth="2">
               <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
@@ -117,7 +117,7 @@ export default function EditProfileModal({ isOpen, onClose }: EditProfileModalPr
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="w-full h-10 rounded-[8px] border border-[var(--border)] bg-[var(--bg-input)] pl-9 pr-3 text-sm focus:border-[#7494EC] focus:ring-1 focus:ring-[#7494EC] outline-none transition"
+              className="w-full h-10 rounded-[8px] border border-[var(--border)] bg-[var(--bg-input)] pl-9 pr-3 text-sm focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)] outline-none transition"
             />
           </div>
         </div>
@@ -129,7 +129,7 @@ export default function EditProfileModal({ isOpen, onClose }: EditProfileModalPr
             value={bio}
             onChange={(e) => setBio(e.target.value)}
             maxLength={500}
-            className="w-full min-h-[100px] rounded-[8px] border border-[var(--border)] bg-[var(--bg-input)] p-3 text-sm resize-none focus:border-[#7494EC] focus:ring-1 focus:ring-[#7494EC] outline-none transition"
+            className="w-full min-h-[100px] rounded-[8px] border border-[var(--border)] bg-[var(--bg-input)] p-3 text-sm resize-none focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)] outline-none transition"
           />
         </div>
 

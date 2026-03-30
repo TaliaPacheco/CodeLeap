@@ -74,7 +74,7 @@ export default function PostCard({ post, currentUserId, currentUserAvatar, curre
   }
 
   return (
-    <div className="bg-[var(--bg-card)] rounded-[12px] border border-[var(--border-accent)] shadow-[var(--shadow-card)] p-5">
+    <div className="bg-[var(--bg-card)] rounded-[12px] border border-[var(--border)] p-5">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
@@ -86,7 +86,7 @@ export default function PostCard({ post, currentUserId, currentUserAvatar, curre
               <TimeAgo date={post.created_at} className="text-xs text-[var(--text-placeholder)]" />
             </div>
             {post.author.role_title && (
-              <span className="text-xs text-[#7494EC]">{post.author.role_title}</span>
+              <span className="text-xs text-[var(--primary)]">{post.author.role_title}</span>
             )}
           </div>
         </div>
@@ -96,7 +96,7 @@ export default function PostCard({ post, currentUserId, currentUserAvatar, curre
             <button
               type="button"
               onClick={() => onEdit(post)}
-              className="text-[var(--text-placeholder)] hover:text-[#7494EC] transition-colors cursor-pointer"
+              className="text-[var(--text-placeholder)] hover:text-[var(--primary)] transition-colors cursor-pointer"
               aria-label="Edit post"
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -107,7 +107,7 @@ export default function PostCard({ post, currentUserId, currentUserAvatar, curre
             <button
               type="button"
               onClick={() => onDelete(post.id)}
-              className="text-[var(--text-placeholder)] hover:text-[#EF4444] transition-colors cursor-pointer"
+              className="text-[var(--text-placeholder)] hover:text-[var(--danger)] transition-colors cursor-pointer"
               aria-label="Delete post"
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -149,7 +149,7 @@ export default function PostCard({ post, currentUserId, currentUserAvatar, curre
           className="flex items-center gap-1.5 cursor-pointer transition-colors"
         >
           {post.is_liked ? (
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="#EF4444" stroke="#EF4444" strokeWidth="2">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--danger)" stroke="var(--danger)" strokeWidth="2">
               <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
             </svg>
           ) : (
@@ -157,7 +157,7 @@ export default function PostCard({ post, currentUserId, currentUserAvatar, curre
               <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
             </svg>
           )}
-          <span className={`text-sm ${post.is_liked ? 'text-[#EF4444] font-medium' : 'text-[var(--text-placeholder)]'}`}>
+          <span className={`text-sm ${post.is_liked ? 'text-[var(--danger)] font-medium' : 'text-[var(--text-placeholder)]'}`}>
             {post.likes_count}
           </span>
         </button>
@@ -166,7 +166,7 @@ export default function PostCard({ post, currentUserId, currentUserAvatar, curre
         <button
           type="button"
           onClick={() => setShowComments(!showComments)}
-          className={`flex items-center gap-1.5 cursor-pointer transition-colors ${showComments ? 'text-[#7494EC]' : 'text-[var(--text-placeholder)] hover:text-[#7494EC]'}`}
+          className={`flex items-center gap-1.5 cursor-pointer transition-colors ${showComments ? 'text-[var(--primary)]' : 'text-[var(--text-placeholder)] hover:text-[var(--primary)]'}`}
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
@@ -178,7 +178,7 @@ export default function PostCard({ post, currentUserId, currentUserAvatar, curre
         <button
           type="button"
           onClick={handleShare}
-          className="flex items-center gap-1.5 text-[var(--text-placeholder)] hover:text-[#7494EC] transition-colors cursor-pointer ml-auto"
+          className="flex items-center gap-1.5 text-[var(--text-placeholder)] hover:text-[var(--primary)] transition-colors cursor-pointer ml-auto"
           aria-label="Share post"
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -216,7 +216,7 @@ export default function PostCard({ post, currentUserId, currentUserAvatar, curre
                               <button
                                 type="button"
                                 onClick={handleConfirmDeleteComment}
-                                className="text-[#EF4444] font-semibold text-xs hover:underline cursor-pointer"
+                                className="text-[var(--danger)] font-semibold text-xs hover:underline cursor-pointer"
                               >
                                 {t('deleteComment')}?
                               </button>
@@ -233,7 +233,7 @@ export default function PostCard({ post, currentUserId, currentUserAvatar, curre
                               <button
                                 type="button"
                                 onClick={() => startEditComment(comment.id, comment.content)}
-                                className="text-[var(--text-placeholder)] hover:text-[#7494EC] transition-colors cursor-pointer"
+                                className="text-[var(--text-placeholder)] hover:text-[var(--primary)] transition-colors cursor-pointer"
                                 aria-label={t('editComment')}
                               >
                                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -244,7 +244,7 @@ export default function PostCard({ post, currentUserId, currentUserAvatar, curre
                               <button
                                 type="button"
                                 onClick={() => setDeletingCommentId(comment.id)}
-                                className="text-[var(--text-placeholder)] hover:text-[#EF4444] transition-colors cursor-pointer"
+                                className="text-[var(--text-placeholder)] hover:text-[var(--danger)] transition-colors cursor-pointer"
                                 aria-label={t('deleteComment')}
                               >
                                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -266,14 +266,14 @@ export default function PostCard({ post, currentUserId, currentUserAvatar, curre
                           value={editingCommentText}
                           onChange={(e) => setEditingCommentText(e.target.value)}
                           onKeyDown={(e) => { if (e.key === 'Enter') handleSaveComment(); if (e.key === 'Escape') cancelEditComment(); }}
-                          className="flex-1 bg-[var(--bg-input)] border border-[var(--border)] rounded-full px-3 py-1 text-sm text-[var(--text-primary)] outline-none focus:border-[#7494EC]"
+                          className="flex-1 bg-[var(--bg-input)] border border-[var(--border)] rounded-full px-3 py-1 text-sm text-[var(--text-primary)] outline-none focus:border-[var(--primary)]"
                           autoFocus
                         />
                         <button
                           type="button"
                           onClick={handleSaveComment}
                           disabled={!editingCommentText.trim()}
-                          className="text-[#7494EC] font-semibold text-xs hover:underline disabled:opacity-40 cursor-pointer"
+                          className="text-[var(--primary)] font-semibold text-xs hover:underline disabled:opacity-40 cursor-pointer"
                         >
                           {t('saveComment')}
                         </button>
@@ -310,7 +310,7 @@ export default function PostCard({ post, currentUserId, currentUserAvatar, curre
                 type="button"
                 onClick={handleSubmitComment}
                 disabled={!commentText.trim() || submitting}
-                className="text-[#7494EC] font-semibold text-xs hover:underline disabled:opacity-40 disabled:no-underline"
+                className="text-[var(--primary)] font-semibold text-xs hover:underline disabled:opacity-40 disabled:no-underline"
               >
                 {t('send')}
               </button>

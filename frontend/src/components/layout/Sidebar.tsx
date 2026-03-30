@@ -62,10 +62,10 @@ export default function Sidebar({ activeView, onViewChange, sort, onSortChange }
               key={item.id}
               type="button"
               onClick={() => onViewChange(item.id)}
-              className={`flex items-center gap-3 w-full px-4 py-2.5 rounded-[8px] text-sm transition ${
+              className={`flex items-center gap-3 w-full px-3 py-2 rounded-[8px] text-sm font-medium transition-colors duration-150 cursor-pointer ${
                 isActive
-                  ? 'bg-[#7494EC] text-white'
-                  : 'text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)]'
+                  ? 'bg-[var(--primary-subtle)] text-[var(--primary)]'
+                  : 'text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)] hover:text-[var(--text-primary)]'
               }`}
             >
               {item.icon}
@@ -91,12 +91,12 @@ export default function Sidebar({ activeView, onViewChange, sort, onSortChange }
               className="flex items-center gap-3 cursor-pointer py-2"
             >
               <span
-                className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${
-                  isSelected ? 'border-[#7494EC]' : 'border-[var(--border)]'
+                className={`w-4 h-4 rounded-full border-2 flex items-center justify-center transition-colors duration-150 ${
+                  isSelected ? 'border-[var(--primary)]' : 'border-[var(--border)]'
                 }`}
               >
                 {isSelected && (
-                  <span className="w-2 h-2 bg-[#7494EC] rounded-full" />
+                  <span className="w-2 h-2 bg-[var(--primary)] rounded-full" />
                 )}
               </span>
               <input

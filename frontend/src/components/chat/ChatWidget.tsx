@@ -55,7 +55,7 @@ export default function ChatWidget() {
           <button
             type="button"
             onClick={() => setIsOpen(true)}
-            className="flex items-center gap-3 bg-[var(--bg-card)] border border-[var(--border)] rounded-t-[12px] px-4 py-2.5 shadow-lg hover:shadow-xl transition-shadow"
+            className="flex items-center gap-3 bg-[var(--bg-card)] border border-[var(--border)] rounded-t-[12px] px-4 py-2.5 shadow-sm hover:shadow transition-shadow"
           >
             {user.profile_picture ? (
               <img
@@ -64,17 +64,17 @@ export default function ChatWidget() {
                 className="w-8 h-8 rounded-full object-cover"
               />
             ) : (
-              <div className="w-8 h-8 rounded-full bg-[#7494EC] flex items-center justify-center text-white font-bold text-xs">
-                {user.username[0].toUpperCase()}
+              <div className="w-8 h-8 rounded-full bg-[var(--primary)] flex items-center justify-center text-white font-medium text-xs">
+                {(user.username ?? '?')[0].toUpperCase()}
               </div>
             )}
             <span className="font-semibold text-sm text-[var(--text-primary)]">{t('messages')}</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-2">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-2">
               <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
               <line x1="12" y1="8" x2="12" y2="16" />
               <line x1="8" y1="12" x2="16" y2="12" />
             </svg>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="18 15 12 9 6 15" />
             </svg>
           </button>
@@ -84,7 +84,7 @@ export default function ChatWidget() {
       {/* Painel aberto com animação */}
       {isOpen && (
         <div
-          className={`fixed bottom-0 right-6 z-50 w-[360px] h-[500px] bg-[var(--bg-card)] border border-[var(--border)] rounded-t-[12px] shadow-2xl flex flex-col transition-all duration-300 ease-out ${
+          className={`fixed bottom-0 right-6 z-50 w-[360px] h-[500px] bg-[var(--bg-card)] border border-[var(--border)] rounded-t-[12px] shadow-lg flex flex-col transition-all duration-200 ease-out ${
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
           }`}
         >
@@ -98,8 +98,8 @@ export default function ChatWidget() {
                 className="w-8 h-8 rounded-full object-cover"
               />
             ) : (
-              <div className="w-8 h-8 rounded-full bg-[#7494EC] flex items-center justify-center text-white font-bold text-xs">
-                {user.username[0].toUpperCase()}
+              <div className="w-8 h-8 rounded-full bg-[var(--primary)] flex items-center justify-center text-white font-medium text-xs">
+                {(user.username ?? '?')[0].toUpperCase()}
               </div>
             )}
             <span className="font-semibold text-sm text-[var(--text-primary)]">{t('messages')}</span>
@@ -112,7 +112,7 @@ export default function ChatWidget() {
               className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-[var(--bg-subtle)] transition-colors"
               title={t('newChat')}
             >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
                 <line x1="12" y1="8" x2="12" y2="16" />
                 <line x1="8" y1="12" x2="16" y2="12" />
@@ -124,7 +124,7 @@ export default function ChatWidget() {
               onClick={() => setIsOpen(false)}
               className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-[var(--bg-subtle)] transition-colors"
             >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <polyline points="6 9 12 15 18 9" />
               </svg>
             </button>
@@ -139,7 +139,7 @@ export default function ChatWidget() {
               <button
                 type="button"
                 onClick={handleBack}
-                className="flex items-center gap-2 px-4 py-2 text-sm text-[#7494EC] hover:bg-[var(--bg-input)] transition-colors shrink-0 border-b border-[var(--border)]"
+                className="flex items-center gap-2 px-4 py-2 text-sm text-[var(--primary)] hover:bg-[var(--bg-input)] transition-colors shrink-0 border-b border-[var(--border)]"
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="15 18 9 12 15 6" />

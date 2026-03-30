@@ -34,7 +34,7 @@ export default function NewChatModal({ isOpen, onClose, onCreated, following }: 
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40" onClick={onClose}>
-      <div className="bg-[var(--bg-card)] rounded-[12px] w-full max-w-[400px] shadow-xl" onClick={e => e.stopPropagation()}>
+      <div className="bg-[var(--bg-card)] rounded-[12px] w-full max-w-[400px] border border-[var(--border)]" onClick={e => e.stopPropagation()}>
         <div className="flex items-center justify-between p-4 border-b border-[var(--border)]">
           <h3 className="font-bold text-base text-[var(--text-primary)]">{t('newChat')}</h3>
           <button type="button" onClick={onClose} className="text-[var(--text-placeholder)] hover:text-[var(--text-muted)]">
@@ -51,7 +51,7 @@ export default function NewChatModal({ isOpen, onClose, onCreated, following }: 
             value={search}
             onChange={e => setSearch(e.target.value)}
             placeholder={t('searchUser')}
-            className="w-full h-10 px-4 rounded-[8px] border border-[var(--border)] bg-[var(--bg-input)] text-sm text-[var(--text-primary)] placeholder:text-[var(--text-placeholder)] outline-none focus:border-[#7494EC] focus:ring-1 focus:ring-[#7494EC] transition-colors"
+            className="w-full h-10 px-4 rounded-[8px] border border-[var(--border)] bg-[var(--bg-input)] text-sm text-[var(--text-primary)] placeholder:text-[var(--text-placeholder)] outline-none focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)] transition-colors"
           />
         </div>
 
@@ -74,7 +74,7 @@ export default function NewChatModal({ isOpen, onClose, onCreated, following }: 
                     className="w-9 h-9 rounded-full object-cover"
                   />
                 ) : (
-                  <div className="w-9 h-9 rounded-full bg-[#7494EC] flex items-center justify-center text-white font-bold text-sm">
+                  <div className="w-9 h-9 rounded-full bg-[var(--primary)] flex items-center justify-center text-white font-medium text-sm">
                     {user.username[0].toUpperCase()}
                   </div>
                 )}
