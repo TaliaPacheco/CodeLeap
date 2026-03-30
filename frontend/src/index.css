@@ -3,44 +3,78 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --bg-page: #F6F6F8;
+  /* Backgrounds */
+  --bg-page: #F8F9FB;
   --bg-card: #FFFFFF;
-  --bg-input: #F8FAFC;
-  --bg-subtle: #F1F5F9;
-  --bg-accent: rgba(116, 148, 236, 0.1);
+  --bg-input: #F8F9FB;
+  --bg-subtle: #F1F4F8;
+  --bg-accent: rgba(116, 148, 236, 0.06);
+
+  /* Text hierarchy */
   --text-primary: #0F172A;
   --text-secondary: #475569;
   --text-muted: #64748B;
   --text-placeholder: #94A3B8;
-  --text-label: #334155;
-  --border: #E2E8F0;
-  --border-light: #F1F5F9;
-  --border-accent: rgba(116, 148, 236, 0.1);
-  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --text-label: #1E293B;
+
+  /* Borders */
+  --border: #E8ECF1;
+  --border-light: #F1F4F8;
+  --border-accent: #E8ECF1;
+
+  /* Shadow — nearly invisible for flat design */
+  --shadow-card: 0 0 0 1px rgba(0, 0, 0, 0.03);
+
+  /* Primary color scale */
+  --primary: #7494EC;
+  --primary-hover: #5B7BD9;
+  --primary-subtle: rgba(116, 148, 236, 0.08);
+  --primary-muted: rgba(116, 148, 236, 0.15);
+
+  /* Semantic */
+  --danger: #EF4444;
+  --danger-hover: #DC2626;
+  --danger-subtle: #FEF2F2;
+  --success: #22C55E;
 }
 
 .dark {
-  --bg-page: #0F172A;
-  --bg-card: #1E293B;
-  --bg-input: #0F172A;
-  --bg-subtle: #1E293B;
-  --bg-accent: rgba(116, 148, 236, 0.2);
+  --bg-page: #0B1120;
+  --bg-card: #151D2E;
+  --bg-input: #0B1120;
+  --bg-subtle: #1A2332;
+  --bg-accent: rgba(116, 148, 236, 0.08);
+
   --text-primary: #F1F5F9;
   --text-secondary: #CBD5E1;
   --text-muted: #94A3B8;
   --text-placeholder: #64748B;
   --text-label: #E2E8F0;
-  --border: #334155;
-  --border-light: #1E293B;
-  --border-accent: rgba(116, 148, 236, 0.2);
-  --shadow-card: 0 1px 4px rgba(0, 0, 0, 0.3);
+
+  --border: #1E293B;
+  --border-light: #1A2332;
+  --border-accent: #1E293B;
+
+  --shadow-card: 0 0 0 1px rgba(255, 255, 255, 0.04);
+
+  --primary: #7494EC;
+  --primary-hover: #8FAAEF;
+  --primary-subtle: rgba(116, 148, 236, 0.12);
+  --primary-muted: rgba(116, 148, 236, 0.2);
+
+  --danger: #EF4444;
+  --danger-hover: #F87171;
+  --danger-subtle: rgba(239, 68, 68, 0.1);
+  --success: #4ADE80;
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   margin: 0;
   background-color: var(--bg-page);
   color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  line-height: 1.5;
 }
