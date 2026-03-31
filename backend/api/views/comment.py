@@ -3,7 +3,7 @@ from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from api.models import Post, Comment, Notification
+from api.models import Post, Comment
 from api.serializers import CommentSerializer
 
 
@@ -22,11 +22,6 @@ class PostCommentsView(APIView):
             post=post,
             content=serializer.validated_data['content'],
         )
-        if post.author != request.user:
-            Notification.objects.create(
-                recipient=post.author, actor=request.user,
-                notification_type='comment', post=post
-            )
         return Response(CommentSerializer(comment).data, status=status.HTTP_201_CREATED)
 
 

@@ -4,7 +4,7 @@ from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from api.models import Post, Like, Notification
+from api.models import Post, Like
 from api.permissions import IsAuthorOrReadOnly
 from api.serializers import PostSerializer, PostCreateSerializer, PostUpdateSerializer
 
@@ -81,11 +81,6 @@ class PostLikeView(APIView):
         _, created = Like.objects.get_or_create(user=request.user, post=post)
         if not created:
             return Response({'detail': 'Already liked.'}, status=status.HTTP_400_BAD_REQUEST)
-        if post.author != request.user:
-            Notification.objects.create(
-                recipient=post.author, actor=request.user,
-                notification_type='like', post=post
-            )
         return Response(status=status.HTTP_201_CREATED)
 
     def delete(self, request, pk):
