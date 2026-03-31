@@ -71,7 +71,7 @@ export default function LoginPage() {
             </svg>
           </div>
           <span className="font-bold text-xl text-[var(--text-primary)] tracking-tight">
-            CodeLeap Network
+            Nudos
           </span>
         </div>
 

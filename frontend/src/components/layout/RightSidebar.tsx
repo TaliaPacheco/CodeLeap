@@ -96,18 +96,6 @@ export default function RightSidebar({ suggestions, following, onFollow, onUnfol
         </div>
       )}
 
-      {/* CodeLeap Premium */}
-      <div className="bg-[var(--primary-subtle)] rounded-[12px] p-4 border border-[var(--primary-muted)]">
-        <h3 className="font-semibold text-sm text-[var(--primary)]">{t('codeleapPremium')}</h3>
-        <p className="text-xs text-[var(--text-secondary)] mt-1">{t('premiumDescription')}</p>
-        <button
-          type="button"
-          className="mt-3 w-full bg-[var(--primary)] text-white text-sm font-medium py-2.5 rounded-[8px] hover:bg-[var(--primary-hover)] transition-colors duration-150 cursor-pointer"
-        >
-          {t('learnMore')}
-        </button>
-      </div>
-
       {/* Footer links */}
       <div className="mt-4">
         <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-[var(--text-placeholder)]">
@@ -116,7 +104,7 @@ export default function RightSidebar({ suggestions, following, onFollow, onUnfol
           <span>{t('cookiePolicy')}</span>
           <span>{t('accessibility')}</span>
         </div>
-        <p className="text-xs text-[var(--text-placeholder)] mt-2">&copy; 2024 CodeLeap</p>
+        <p className="text-xs text-[var(--text-placeholder)] mt-2">&copy; 2026 Nudos</p>
       </div>
     </div>
   );

@@ -54,8 +54,7 @@ export default function TopBar({ onLogout, onEditProfile, notifications, unreadC
             <polyline points="8 6 2 12 8 18" />
           </svg>
         </div>
-        <span className="text-[var(--text-primary)] font-bold">CodeLeap</span>
-        <span className="text-[var(--primary)] font-bold">Network</span>
+        <span className="text-[var(--text-primary)] font-bold">Nudos</span>
       </div>
 
       {/* Right side: Actions */}

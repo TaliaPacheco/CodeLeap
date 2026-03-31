@@ -114,7 +114,7 @@ export default function RegistrationPage() {
           <polyline points="16 18 22 12 16 6" />
           <polyline points="8 6 2 12 8 18" />
         </svg>
-        <span className="font-bold text-lg text-[var(--text-primary)]">CodeLeap Network</span>
+        <span className="font-bold text-lg text-[var(--text-primary)]">Nudos</span>
       </div>
 
       {/* Card */}
