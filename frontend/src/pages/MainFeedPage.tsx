@@ -15,6 +15,10 @@ import EditPostModal from '../components/modals/EditPostModal';
 import DeleteConfirmModal from '../components/modals/DeleteConfirmModal';
 import EditProfileModal from '../components/modals/EditProfileModal';
 import ChatWidget from '../components/chat/ChatWidget';
+import { useStories } from '../hooks/useStories';
+import StoryBar from '../components/stories/StoryBar';
+import StoryViewer from '../components/stories/StoryViewer';
+import CreateStoryModal from '../components/stories/CreateStoryModal';
 
 type View = 'feed' | 'my-posts' | 'liked';
 type Sort = 'recent' | 'trending';
@@ -41,6 +45,10 @@ export default function MainFeedPage() {
   const [editingPost, setEditingPost] = useState<Post | null>(null);
   const [deletingPostId, setDeletingPostId] = useState<number | null>(null);
   const [showEditProfile, setShowEditProfile] = useState(false);
+
+  const { groups: storyGroups, loading: storiesLoading, createStory, markViewed, react: reactToStory, reply: replyToStory } = useStories();
+  const [showCreateStory, setShowCreateStory] = useState(false);
+  const [viewerGroupIndex, setViewerGroupIndex] = useState<number | null>(null);
 
   const handleCreatePost = useCallback(async (payload: { title: string; content: string; media?: string }) => {
     const newPost = await createPost(payload);
@@ -88,6 +96,13 @@ export default function MainFeedPage() {
 
         {/* Main Feed */}
         <main className="flex-1 min-w-0 py-4 space-y-4">
+          <StoryBar
+            groups={storyGroups}
+            loading={storiesLoading}
+            onOpenCreate={() => setShowCreateStory(true)}
+            onOpenViewer={setViewerGroupIndex}
+          />
+
           <CreatePostBox
             userAvatar={user.profile_picture}
             username={user.username}
@@ -153,6 +168,23 @@ export default function MainFeedPage() {
         isOpen={showEditProfile}
         onClose={() => setShowEditProfile(false)}
       />
+
+      <CreateStoryModal
+        isOpen={showCreateStory}
+        onClose={() => setShowCreateStory(false)}
+        onSubmit={createStory}
+      />
+
+      {viewerGroupIndex !== null && (
+        <StoryViewer
+          groups={storyGroups}
+          initialGroupIndex={viewerGroupIndex}
+          onClose={() => setViewerGroupIndex(null)}
+          onViewed={markViewed}
+          onReact={reactToStory}
+          onReply={replyToStory}
+        />
+      )}
 
       <ChatWidget />
     </div>
