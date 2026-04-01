@@ -6,7 +6,7 @@ ENV PYTHONUNBUFFERED=1
 WORKDIR /app
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    libpq-dev gcc && \
+    libpq-dev gcc cron && \
     rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt .
@@ -18,4 +18,7 @@ RUN DJANGO_SECRET_KEY=build-placeholder python manage.py collectstatic --noinput
 
 EXPOSE 8000
 
-CMD ["sh", "-c", "python manage.py migrate --noinput && daphne -b 0.0.0.0 -p 8000 codeleap.asgi:application"]
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+CMD ["/entrypoint.sh"]
