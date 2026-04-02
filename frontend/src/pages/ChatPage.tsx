@@ -49,7 +49,7 @@ export default function ChatPage() {
 
       <div className="flex max-w-[1200px] mx-auto pt-[72px] h-[calc(100vh-0px)]">
         {/* Conversation list */}
-        <div className="w-[320px] shrink-0 bg-white border-r border-[#E2E8F0]">
+        <div className={`w-full md:w-[320px] shrink-0 bg-white border-r border-[#E2E8F0] ${activeConversation ? 'hidden md:block' : 'block'}`}>
           <ConversationList
             conversations={conversations}
             activeId={activeConversation?.id ?? null}
@@ -60,11 +60,14 @@ export default function ChatPage() {
         </div>
 
         {/* Chat window */}
-        <ChatWindow
-          conversation={activeConversation}
-          currentUserId={user.id}
-          onNewMessage={handleNewMessage}
-        />
+        <div className={`flex-1 min-w-0 ${activeConversation ? 'block' : 'hidden md:block'}`}>
+          <ChatWindow
+            conversation={activeConversation}
+            currentUserId={user.id}
+            onNewMessage={handleNewMessage}
+            onBack={() => setActiveConversation(null)}
+          />
+        </div>
       </div>
 
       <NewChatModal

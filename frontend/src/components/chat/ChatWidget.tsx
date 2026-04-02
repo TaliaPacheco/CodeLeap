@@ -51,7 +51,7 @@ export default function ChatWidget() {
     <>
       {/* Barra fechada */}
       {!isOpen && (
-        <div className="fixed bottom-0 right-6 z-50">
+        <div className="fixed bottom-14 lg:bottom-0 right-3 sm:right-6 z-50">
           <button
             type="button"
             onClick={() => setIsOpen(true)}
@@ -68,8 +68,8 @@ export default function ChatWidget() {
                 {(user.username ?? '?')[0].toUpperCase()}
               </div>
             )}
-            <span className="font-semibold text-sm text-[var(--text-primary)]">{t('messages')}</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-2">
+            <span className="hidden sm:inline font-semibold text-sm text-[var(--text-primary)]">{t('messages')}</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="hidden sm:block ml-2">
               <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
               <line x1="12" y1="8" x2="12" y2="16" />
               <line x1="8" y1="12" x2="16" y2="12" />
@@ -84,7 +84,7 @@ export default function ChatWidget() {
       {/* Painel aberto com animação */}
       {isOpen && (
         <div
-          className={`fixed bottom-0 right-6 z-50 w-[360px] h-[500px] bg-[var(--bg-card)] border border-[var(--border)] rounded-t-[12px] shadow-lg flex flex-col transition-all duration-200 ease-out ${
+          className={`fixed bottom-14 lg:bottom-0 right-0 sm:right-6 z-50 w-full sm:w-[360px] h-[50vh] sm:h-[500px] bg-[var(--bg-card)] border border-[var(--border)] rounded-t-[12px] shadow-lg flex flex-col transition-all duration-200 ease-out ${
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
           }`}
         >

@@ -8,9 +8,10 @@ interface ChatWindowProps {
   conversation: Conversation | null;
   currentUserId: number;
   onNewMessage?: (conversationId: number, message: Message) => void;
+  onBack?: () => void;
 }
 
-export default function ChatWindow({ conversation, currentUserId, onNewMessage }: ChatWindowProps) {
+export default function ChatWindow({ conversation, currentUserId, onNewMessage, onBack }: ChatWindowProps) {
   const { t } = useLanguage();
   const [text, setText] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -62,7 +63,14 @@ export default function ChatWindow({ conversation, currentUserId, onNewMessage }
   return (
     <div className="flex-1 flex flex-col bg-[var(--bg-input)]">
       {/* Header */}
-      <div className="flex items-center gap-3 px-5 py-3 bg-[var(--bg-card)] border-b border-[var(--border)]">
+      <div className="flex items-center gap-3 px-3 sm:px-5 py-3 bg-[var(--bg-card)] border-b border-[var(--border)]">
+        {onBack && (
+          <button type="button" onClick={onBack} className="md:hidden p-1 text-[var(--text-secondary)] hover:text-[var(--primary)]">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
+          </button>
+        )}
         {other.profile_picture ? (
           <img
             src={`data:image/png;base64,${other.profile_picture}`}

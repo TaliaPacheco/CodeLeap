@@ -28,6 +28,7 @@ export default function MainFeedPage() {
   const { t } = useLanguage();
   const [activeView, setActiveView] = useState<View>('feed');
   const [sort, setSort] = useState<Sort>('recent');
+  const [showMobilePeople, setShowMobilePeople] = useState(false);
 
   const {
     posts, loading, loadingMore, hasMore, loadMore,
@@ -81,7 +82,7 @@ export default function MainFeedPage() {
         notificationsLoading={notifLoading}
       />
 
-      <div className="flex max-w-[1200px] mx-auto pt-[72px] px-4 gap-6">
+      <div className="flex max-w-[1200px] mx-auto pt-[72px] pb-16 lg:pb-0 px-2 sm:px-4 gap-6">
         {/* Left Sidebar */}
         <aside className="hidden lg:block w-[200px] shrink-0">
           <div className="sticky top-[72px]">
@@ -187,6 +188,71 @@ export default function MainFeedPage() {
       )}
 
       <ChatWidget />
+
+      {/* Mobile people panel */}
+      {showMobilePeople && (
+        <div className="fixed inset-0 z-50 lg:hidden">
+          <div className="absolute inset-0 bg-black/40" onClick={() => setShowMobilePeople(false)} />
+          <div className="absolute bottom-14 left-0 right-0 max-h-[70vh] overflow-y-auto bg-[var(--bg-page)] rounded-t-[16px] p-4">
+            <RightSidebar
+              suggestions={suggestions}
+              following={following}
+              onFollow={follow}
+              onUnfollow={unfollow}
+              loading={suggestionsLoading}
+              loadingFollowing={loadingFollowing}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* Mobile bottom navigation */}
+      <nav className="fixed bottom-0 left-0 right-0 bg-[var(--bg-card)] border-t border-[var(--border)] flex items-center justify-around h-14 z-50 lg:hidden">
+        <button
+          type="button"
+          onClick={() => { setActiveView('feed'); setShowMobilePeople(false); }}
+          className={`flex flex-col items-center gap-0.5 px-3 py-1 ${activeView === 'feed' && !showMobilePeople ? 'text-[var(--primary)]' : 'text-[var(--text-muted)]'}`}
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M3 9.5L12 2l9 7.5V20a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9.5z" />
+          </svg>
+          <span className="text-[10px] font-medium">{t('feed')}</span>
+        </button>
+        <button
+          type="button"
+          onClick={() => { setActiveView('my-posts'); setShowMobilePeople(false); }}
+          className={`flex flex-col items-center gap-0.5 px-3 py-1 ${activeView === 'my-posts' && !showMobilePeople ? 'text-[var(--primary)]' : 'text-[var(--text-muted)]'}`}
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+          <span className="text-[10px] font-medium">{t('myPosts')}</span>
+        </button>
+        <button
+          type="button"
+          onClick={() => { setActiveView('liked'); setShowMobilePeople(false); }}
+          className={`flex flex-col items-center gap-0.5 px-3 py-1 ${activeView === 'liked' && !showMobilePeople ? 'text-[var(--primary)]' : 'text-[var(--text-muted)]'}`}
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+          </svg>
+          <span className="text-[10px] font-medium">{t('liked')}</span>
+        </button>
+        <button
+          type="button"
+          onClick={() => setShowMobilePeople(!showMobilePeople)}
+          className={`flex flex-col items-center gap-0.5 px-3 py-1 ${showMobilePeople ? 'text-[var(--primary)]' : 'text-[var(--text-muted)]'}`}
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+            <circle cx="9" cy="7" r="4" />
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+          </svg>
+          <span className="text-[10px] font-medium">{t('following')}</span>
+        </button>
+      </nav>
     </div>
   );
 }

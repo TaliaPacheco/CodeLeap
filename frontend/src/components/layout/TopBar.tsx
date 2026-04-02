@@ -45,7 +45,7 @@ export default function TopBar({ onLogout, onEditProfile, notifications, unreadC
   }
 
   return (
-    <header className="fixed top-0 w-full bg-[var(--bg-card)]/95 backdrop-blur-sm border-b border-[var(--border)] h-14 px-6 lg:px-10 flex items-center justify-between z-50">
+    <header className="fixed top-0 w-full bg-[var(--bg-card)]/95 backdrop-blur-sm border-b border-[var(--border)] h-14 px-3 sm:px-6 lg:px-10 flex items-center justify-between z-50">
       {/* Left side: Logo */}
       <div className="flex items-center gap-2">
         <div className="w-8 h-8 bg-[var(--primary)] rounded-[8px] flex items-center justify-center">
@@ -58,9 +58,9 @@ export default function TopBar({ onLogout, onEditProfile, notifications, unreadC
       </div>
 
       {/* Right side: Actions */}
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2 sm:gap-4">
         {/* Language toggle */}
-        <div className="flex items-center bg-[var(--bg-subtle)] rounded-full p-0.5 text-xs font-semibold">
+        <div className="hidden sm:flex items-center bg-[var(--bg-subtle)] rounded-full p-0.5 text-xs font-semibold">
           <button
             type="button"
             onClick={() => setLanguage('en')}
@@ -119,7 +119,7 @@ export default function TopBar({ onLogout, onEditProfile, notifications, unreadC
 
           {/* Notification dropdown */}
           {showDropdown && (
-            <div className="absolute right-0 top-10 w-[340px] bg-[var(--bg-card)] border border-[var(--border)] rounded-[12px] overflow-hidden">
+            <div className="absolute right-0 top-10 w-[calc(100vw-24px)] sm:w-[340px] max-w-[340px] bg-[var(--bg-card)] border border-[var(--border)] rounded-[12px] overflow-hidden">
               {/* Header */}
               <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--border-light)]">
                 <span className="font-semibold text-sm text-[var(--text-primary)]">{t('notifications')}</span>
@@ -177,7 +177,7 @@ export default function TopBar({ onLogout, onEditProfile, notifications, unreadC
             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
             <circle cx="12" cy="7" r="4" />
           </svg>
-          {t('profile')}
+          <span className="hidden sm:inline">{t('profile')}</span>
         </button>
 
         {/* Logout button */}
@@ -191,7 +191,7 @@ export default function TopBar({ onLogout, onEditProfile, notifications, unreadC
             <polyline points="16 17 21 12 16 7" />
             <line x1="21" y1="12" x2="9" y2="12" />
           </svg>
-          {t('logout')}
+          <span className="hidden sm:inline">{t('logout')}</span>
         </button>
       </div>
     </header>
