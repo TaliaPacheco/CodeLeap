@@ -119,7 +119,7 @@ export default function TopBar({ onLogout, onEditProfile, notifications, unreadC
 
           {/* Notification dropdown */}
           {showDropdown && (
-            <div className="absolute right-0 top-10 w-[calc(100vw-24px)] sm:w-[340px] max-w-[340px] bg-[var(--bg-card)] border border-[var(--border)] rounded-[12px] overflow-hidden">
+            <div className="fixed left-3 right-3 top-14 sm:absolute sm:left-auto sm:right-0 sm:top-10 sm:w-[340px] bg-[var(--bg-card)] border border-[var(--border)] rounded-[12px] overflow-hidden z-50">
               {/* Header */}
               <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--border-light)]">
                 <span className="font-semibold text-sm text-[var(--text-primary)]">{t('notifications')}</span>
