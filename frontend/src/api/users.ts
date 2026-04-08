@@ -16,8 +16,10 @@ export async function fetchUserProfile(username: string): Promise<User> {
   return data;
 }
 
-export async function fetchSuggestions(): Promise<User[]> {
-  const { data } = await client.get<User[]>('/users/suggestions/');
+export async function fetchSuggestions(limit = 10, offset = 0): Promise<{ results: User[]; total: number }> {
+  const { data } = await client.get<{ results: User[]; total: number }>('/users/suggestions/', {
+    params: { limit, offset },
+  });
   return data;
 }
 

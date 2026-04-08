@@ -9,9 +9,12 @@ interface RightSidebarProps {
   onUnfollow: (username: string) => void;
   loading?: boolean;
   loadingFollowing?: boolean;
+  hasMore?: boolean;
+  loadingMore?: boolean;
+  onLoadMore?: () => void;
 }
 
-export default function RightSidebar({ suggestions, following, onFollow, onUnfollow, loading, loadingFollowing }: RightSidebarProps) {
+export default function RightSidebar({ suggestions, following, onFollow, onUnfollow, loading, loadingFollowing, hasMore, loadingMore, onLoadMore }: RightSidebarProps) {
   const { t } = useLanguage();
 
   return (
@@ -52,6 +55,22 @@ export default function RightSidebar({ suggestions, following, onFollow, onUnfol
                 </li>
               ))}
             </ul>
+          )}
+
+          {hasMore && (
+            <button
+              type="button"
+              onClick={onLoadMore}
+              disabled={loadingMore}
+              className="w-full mt-3 text-sm font-medium text-[var(--primary)] hover:underline cursor-pointer disabled:opacity-50"
+            >
+              {loadingMore ? (
+                <span className="inline-flex items-center gap-2">
+                  <span className="w-3.5 h-3.5 border-2 border-[var(--primary)] border-t-transparent rounded-full animate-spin" />
+                  {t('loadMore')}
+                </span>
+              ) : t('loadMore')}
+            </button>
           )}
         </div>
       )}

@@ -39,12 +39,16 @@ class UserProfileView(APIView):
 
 class UserSuggestionsView(APIView):
     def get(self, request):
+        limit = min(int(request.query_params.get('limit', 10)), 50)
+        offset = int(request.query_params.get('offset', 0))
         following_ids = request.user.following.values_list('following_id', flat=True)
         qs = annotate_user_qs(
             User.objects.exclude(pk=request.user.pk)
             .exclude(pk__in=following_ids)
-        )[:10]
-        return Response(UserSerializer(qs, many=True).data)
+        )
+        total = qs.count()
+        users = UserSerializer(qs[offset:offset + limit], many=True).data
+        return Response({'results': users, 'total': total})
 
 
 class FollowingListView(APIView):

@@ -39,7 +39,7 @@ export default function MainFeedPage() {
     liked: activeView === 'liked',
   });
 
-  const { suggestions, following, loading: suggestionsLoading, loadingFollowing, follow, unfollow } = useSuggestions();
+  const { suggestions, following, loading: suggestionsLoading, loadingFollowing, loadingMore: suggestionsLoadingMore, hasMore: suggestionsHasMore, loadMore: loadMoreSuggestions, follow, unfollow } = useSuggestions();
   const { notifications, unreadCount, loading: notifLoading, loadNotifications, markAllAsRead } = useNotifications();
 
   // Modal state
@@ -146,6 +146,9 @@ export default function MainFeedPage() {
               onUnfollow={unfollow}
               loading={suggestionsLoading}
               loadingFollowing={loadingFollowing}
+              hasMore={suggestionsHasMore}
+              loadingMore={suggestionsLoadingMore}
+              onLoadMore={loadMoreSuggestions}
             />
           </div>
         </aside>
@@ -201,6 +204,9 @@ export default function MainFeedPage() {
               onUnfollow={unfollow}
               loading={suggestionsLoading}
               loadingFollowing={loadingFollowing}
+              hasMore={suggestionsHasMore}
+              loadingMore={suggestionsLoadingMore}
+              onLoadMore={loadMoreSuggestions}
             />
           </div>
         </div>

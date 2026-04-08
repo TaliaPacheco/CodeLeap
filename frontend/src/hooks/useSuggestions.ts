@@ -2,15 +2,22 @@ import { useState, useEffect, useCallback } from 'react';
 import type { User } from '../types/user';
 import * as usersApi from '../api/users';
 
+const PAGE_SIZE = 10;
+
 export function useSuggestions() {
   const [suggestions, setSuggestions] = useState<User[]>([]);
   const [following, setFollowing] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadingFollowing, setLoadingFollowing] = useState(true);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [hasMore, setHasMore] = useState(false);
 
   useEffect(() => {
-    usersApi.fetchSuggestions()
-      .then(data => setSuggestions(Array.isArray(data) ? data : []))
+    usersApi.fetchSuggestions(PAGE_SIZE, 0)
+      .then(({ results, total }) => {
+        setSuggestions(results);
+        setHasMore(results.length < total);
+      })
       .catch(() => setSuggestions([]))
       .finally(() => setLoading(false));
 
@@ -19,6 +26,20 @@ export function useSuggestions() {
       .catch(() => setFollowing([]))
       .finally(() => setLoadingFollowing(false));
   }, []);
+
+  const loadMore = useCallback(async () => {
+    setLoadingMore(true);
+    try {
+      const { results, total } = await usersApi.fetchSuggestions(PAGE_SIZE, suggestions.length);
+      const all = [...suggestions, ...results];
+      setSuggestions(all);
+      setHasMore(all.length < total);
+    } catch {
+      // keep current list
+    } finally {
+      setLoadingMore(false);
+    }
+  }, [suggestions]);
 
   const follow = useCallback(async (username: string) => {
     await usersApi.followUser(username);
@@ -34,5 +55,5 @@ export function useSuggestions() {
     if (user) setSuggestions(prev => [...prev, user]);
   }, [following]);
 
-  return { suggestions, following, loading, loadingFollowing, follow, unfollow };
+  return { suggestions, following, loading, loadingFollowing, loadingMore, hasMore, loadMore, follow, unfollow };
 }

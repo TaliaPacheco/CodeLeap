@@ -48,7 +48,7 @@ class UserSuggestionsTests(AuthenticatedTestCase):
         self.create_other_user()
         response = self.client.get('/api/users/suggestions/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        usernames = [u['username'] for u in response.data]
+        usernames = [u['username'] for u in response.data['results']]
         self.assertNotIn('testuser', usernames)
         self.assertIn('other', usernames)
 
@@ -58,6 +58,6 @@ class UserSuggestionsTests(AuthenticatedTestCase):
         Follow.objects.create(follower=self.user, following=other)
         third = self.create_other_user(username='third', email='third@codeleap.com')
         response = self.client.get('/api/users/suggestions/')
-        usernames = [u['username'] for u in response.data]
+        usernames = [u['username'] for u in response.data['results']]
         self.assertNotIn('other', usernames)
         self.assertIn('third', usernames)
