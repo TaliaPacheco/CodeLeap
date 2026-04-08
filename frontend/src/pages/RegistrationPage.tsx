@@ -59,8 +59,16 @@ export default function RegistrationPage() {
       if (err && typeof err === 'object' && 'response' in err) {
         const resp = (err as { response?: { data?: Record<string, unknown> } }).response;
         if (resp?.data) {
+          const apiErrors: Record<string, string> = {
+            'A user with that username already exists.': t('errorUsernameExists'),
+            'A user with that email already exists.': t('errorEmailExists'),
+            'This password is too short. It must contain at least 8 characters.': t('errorPasswordTooShort'),
+            'This password is too common.': t('errorPasswordTooCommon'),
+            'This password is entirely numeric.': t('errorPasswordNumeric'),
+          };
           const messages = Object.values(resp.data)
             .flat()
+            .map((msg) => (typeof msg === 'string' && apiErrors[msg]) ? apiErrors[msg] : msg)
             .join(' ');
           setError(messages || t('registrationFailed'));
         } else {

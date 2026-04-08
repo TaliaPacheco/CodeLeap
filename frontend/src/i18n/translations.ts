@@ -113,6 +113,11 @@ export const translations = {
     mustAgreeTerms: 'You must agree to the Terms of Service and Privacy Policy.',
     registrationFailed: 'Registration failed. Please try again.',
     failedReadImage: 'Failed to read the selected image.',
+    errorUsernameExists: 'A user with that username already exists.',
+    errorEmailExists: 'A user with that email already exists.',
+    errorPasswordTooShort: 'This password is too short. It must contain at least 8 characters.',
+    errorPasswordTooCommon: 'This password is too common.',
+    errorPasswordNumeric: 'This password is entirely numeric.',
 
     // Notifications
     notifications: 'Notifications',
@@ -259,6 +264,11 @@ export const translations = {
     mustAgreeTerms: 'Você deve concordar com os Termos de Serviço e Política de Privacidade.',
     registrationFailed: 'Falha no registro. Tente novamente.',
     failedReadImage: 'Falha ao ler a imagem selecionada.',
+    errorUsernameExists: 'Já existe um usuário com esse nome.',
+    errorEmailExists: 'Já existe um usuário com esse email.',
+    errorPasswordTooShort: 'Esta senha é muito curta. Deve conter pelo menos 8 caracteres.',
+    errorPasswordTooCommon: 'Esta senha é muito comum.',
+    errorPasswordNumeric: 'Esta senha é inteiramente numérica.',
 
     // Notifications
     notifications: 'Notificações',
