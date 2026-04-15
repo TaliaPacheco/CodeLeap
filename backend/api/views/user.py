@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from api.serializers import UserSerializer, UserUpdateSerializer
+from api.serializers.user import MeSerializer
 
 User = get_user_model()
 
@@ -20,14 +21,14 @@ def annotate_user_qs(qs):
 class MeView(APIView):
     def get(self, request):
         user = annotate_user_qs(User.objects.filter(pk=request.user.pk)).first()
-        return Response(UserSerializer(user).data)
+        return Response(MeSerializer(user).data)
 
     def patch(self, request):
         serializer = UserUpdateSerializer(request.user, data=request.data, partial=True)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         user = annotate_user_qs(User.objects.filter(pk=request.user.pk)).first()
-        return Response(UserSerializer(user).data)
+        return Response(MeSerializer(user).data)
 
 
 class UserProfileView(APIView):

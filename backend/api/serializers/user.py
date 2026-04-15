@@ -13,7 +13,7 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = (
-            'id', 'username', 'email', 'profile_picture',
+            'id', 'username', 'profile_picture',
             'bio', 'role_title', 'followers_count', 'following_count',
             'date_joined', 'updated_at',
         )
@@ -22,6 +22,11 @@ class UserSerializer(serializers.ModelSerializer):
         if obj.profile_picture:
             return base64.b64encode(bytes(obj.profile_picture)).decode('utf-8')
         return None
+
+
+class MeSerializer(UserSerializer):
+    class Meta(UserSerializer.Meta):
+        fields = UserSerializer.Meta.fields + ('email',)
 
 
 class UserUpdateSerializer(serializers.ModelSerializer):
